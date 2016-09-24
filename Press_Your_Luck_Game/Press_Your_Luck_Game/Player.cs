@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Player.cs file
+//Player class to hold information about player
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
