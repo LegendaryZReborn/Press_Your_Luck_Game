@@ -1,6 +1,6 @@
 ﻿namespace Press_Your_Luck_Game
 {
-    partial class Form1
+    partial class PressYourLuckGameForm
     {
         /// <summary>
         /// Required designer variable.

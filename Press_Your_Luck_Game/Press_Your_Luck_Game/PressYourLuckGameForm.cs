@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Press_Your_Luck_Game
 {
-    public partial class Form1 : Form
+    public partial class PressYourLuckGameForm : Form
     {
-        public Form1()
+        public PressYourLuckGameForm()
         {
             InitializeComponent();
         }
