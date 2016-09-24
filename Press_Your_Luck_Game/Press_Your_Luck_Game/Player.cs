@@ -22,26 +22,31 @@ namespace Press_Your_Luck_Game
 
         public int Spins
         {
+            //returns the value of spins
             get
             {
                 return spins;
             }
 
+            //Sets spins to value if value is positive, else spins is unchanged
             set
             {
-                this.spins = value;
+                this.spins = value < 0 ? this.spins : value;
             }
         }
 
         public int Cash
         {
+            //returns the value of cash
             get
             {
                 return cash;
             }
+
+            //Sets cash to vlaue if value is positive, else cash is unchanged
             set
             {
-                this.cash = value;
+                this.cash = value < 0 ? this.cash : value;
             }
         }
     }
