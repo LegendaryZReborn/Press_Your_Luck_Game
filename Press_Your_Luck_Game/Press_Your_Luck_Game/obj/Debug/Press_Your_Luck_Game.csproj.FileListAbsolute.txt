@@ -1,2 +1,11 @@
 C:\Users\enema\Dropbox\CMPS class projects\CMPS 4143 CPL 2016\Press_Your_Luck_Game\Press_Your_Luck_Game\bin\Debug\Press_Your_Luck_Game.exe.config
 C:\Repos\Press_Your_Luck_Game\Press_Your_Luck_Game\Press_Your_Luck_Game\bin\Debug\Press_Your_Luck_Game.exe.config
+C:\Users\Cavaughn\Documents\GitHub\Press_Your_Luck_Game\Press_Your_Luck_Game\Press_Your_Luck_Game\bin\Debug\Press_Your_Luck_Game.exe.config
+C:\Users\Cavaughn\Documents\GitHub\Press_Your_Luck_Game\Press_Your_Luck_Game\Press_Your_Luck_Game\obj\Debug\Press_Your_Luck_Game.csprojResolveAssemblyReference.cache
+C:\Users\Cavaughn\Documents\GitHub\Press_Your_Luck_Game\Press_Your_Luck_Game\Press_Your_Luck_Game\obj\Debug\Press_Your_Luck_Game.PressYourLuckGameForm.resources
+C:\Users\Cavaughn\Documents\GitHub\Press_Your_Luck_Game\Press_Your_Luck_Game\Press_Your_Luck_Game\obj\Debug\Press_Your_Luck_Game.Properties.Resources.resources
+C:\Users\Cavaughn\Documents\GitHub\Press_Your_Luck_Game\Press_Your_Luck_Game\Press_Your_Luck_Game\obj\Debug\Press_Your_Luck_Game.csproj.GenerateResource.Cache
+C:\Users\Cavaughn\Documents\GitHub\Press_Your_Luck_Game\Press_Your_Luck_Game\Press_Your_Luck_Game\bin\Debug\Press_Your_Luck_Game.exe
+C:\Users\Cavaughn\Documents\GitHub\Press_Your_Luck_Game\Press_Your_Luck_Game\Press_Your_Luck_Game\bin\Debug\Press_Your_Luck_Game.pdb
+C:\Users\Cavaughn\Documents\GitHub\Press_Your_Luck_Game\Press_Your_Luck_Game\Press_Your_Luck_Game\obj\Debug\Press_Your_Luck_Game.exe
+C:\Users\Cavaughn\Documents\GitHub\Press_Your_Luck_Game\Press_Your_Luck_Game\Press_Your_Luck_Game\obj\Debug\Press_Your_Luck_Game.pdb
