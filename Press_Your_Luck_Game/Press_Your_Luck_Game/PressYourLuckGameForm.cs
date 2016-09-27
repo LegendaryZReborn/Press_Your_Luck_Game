@@ -29,6 +29,7 @@ namespace Press_Your_Luck_Game
             BorderBox.Parent = pictureBox1;
             BorderBox.Location = new Point(0, 0);
             BorderBox.Image = Image.FromFile("..\\..\\Images\\Misc\\Border.gif");
+            BorderBox.Visible = false;
            
             for (int i = 0; i < 18; i++)
             {
@@ -53,7 +54,6 @@ namespace Press_Your_Luck_Game
             timer1 = new System.Windows.Forms.Timer();
             timer1.Tick += new EventHandler(timer1_Tick);
             timer1.Interval = 30; // in miliseconds
-            timer1.Start();
         }
 
         public void reassignBorder()
@@ -80,6 +80,7 @@ namespace Press_Your_Luck_Game
 
         private void Spin_Click(object sender, EventArgs e)
         {
+            BorderBox.Visible = true;
             timer1.Start();
         }
     }

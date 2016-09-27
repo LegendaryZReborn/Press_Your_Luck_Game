@@ -218,7 +218,7 @@
             // 
             this.BorderBox.Location = new System.Drawing.Point(12, 12);
             this.BorderBox.Name = "BorderBox";
-            this.BorderBox.Size = new System.Drawing.Size(126, 85);
+            this.BorderBox.Size = new System.Drawing.Size(122, 85);
             this.BorderBox.TabIndex = 18;
             this.BorderBox.TabStop = false;
             // 
