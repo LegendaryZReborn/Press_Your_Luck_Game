@@ -23,10 +23,9 @@ namespace Press_Your_Luck_Game
         public PressYourLuckGameForm()
         {
             InitializeComponent();
-<<<<<<< HEAD
+
             QAStructure[] qas = new QAStructure[3];
             
-=======
 
             BorderBox.SizeMode = PictureBoxSizeMode.StretchImage;
             BorderBox.BackColor = Color.Transparent;
@@ -86,7 +85,6 @@ namespace Press_Your_Luck_Game
         {
             BorderBox.Visible = true;
             timer1.Start();
->>>>>>> 895646f61fd88f18b2ca697b32e8d053db6a6d6b
         }
     }
 
