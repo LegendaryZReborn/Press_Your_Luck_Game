@@ -9,6 +9,9 @@ Classes:
     Data: image, value (whammy, cash, . . .)
     
   Board:
-    Data: 18 spaces
+    Data: 18 Spaces
+    
+  QAStructure:
+    Data: question (String), answer (String)
      
       
