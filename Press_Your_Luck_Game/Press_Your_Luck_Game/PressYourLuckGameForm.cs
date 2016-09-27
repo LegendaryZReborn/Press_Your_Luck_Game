@@ -15,6 +15,8 @@ namespace Press_Your_Luck_Game
         public PressYourLuckGameForm()
         {
             InitializeComponent();
+            QAStructure[] qas = new QAStructure[3];
+            
         }
     }
 }
