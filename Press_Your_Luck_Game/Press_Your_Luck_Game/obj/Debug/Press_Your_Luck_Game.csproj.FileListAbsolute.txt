@@ -7,3 +7,6 @@ C:\Users\Cavaughn\Documents\GitHub\Press_Your_Luck_Game\Press_Your_Luck_Game\Pre
 C:\Users\Cavaughn\Documents\GitHub\Press_Your_Luck_Game\Press_Your_Luck_Game\Press_Your_Luck_Game\obj\Debug\Press_Your_Luck_Game.csproj.GenerateResource.Cache
 C:\Users\Cavaughn\Documents\GitHub\Press_Your_Luck_Game\Press_Your_Luck_Game\Press_Your_Luck_Game\obj\Debug\Press_Your_Luck_Game.exe
 C:\Users\Cavaughn\Documents\GitHub\Press_Your_Luck_Game\Press_Your_Luck_Game\Press_Your_Luck_Game\obj\Debug\Press_Your_Luck_Game.pdb
+C:\Repos\Press_Your_Luck_Game\Press_Your_Luck_Game\Press_Your_Luck_Game\bin\Debug\Press_Your_Luck_Game.exe.config
+C:\Repos\Press_Your_Luck_Game\Press_Your_Luck_Game\Press_Your_Luck_Game\obj\Debug\Press_Your_Luck_Game.exe
+C:\Repos\Press_Your_Luck_Game\Press_Your_Luck_Game\Press_Your_Luck_Game\obj\Debug\Press_Your_Luck_Game.pdb
