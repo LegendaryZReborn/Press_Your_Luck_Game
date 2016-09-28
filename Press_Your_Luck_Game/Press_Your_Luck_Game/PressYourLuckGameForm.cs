@@ -15,16 +15,10 @@ namespace Press_Your_Luck_Game
 {
     public partial class PressYourLuckGameForm : Form
     {
-<<<<<<< HEAD
         const int MAX_QUESTIONS = 100;
 
         QAStructure[] qaStructure = new QAStructure[MAX_QUESTIONS];
-        PictureBox[] pictureBoxes = new PictureBox[18];
-        String boxname = "pictureBox";
-        String boxnames = "";
-        int i = 0;
-        System.Windows.Forms.Timer timer1;
-=======
+      
         private PictureBox[] pictureBoxes = new PictureBox[18];
         private String boxname = "pictureBox";
         private String boxnames = "";
@@ -32,7 +26,6 @@ namespace Press_Your_Luck_Game
         private System.Windows.Forms.Timer reassignTimer;
         private System.Windows.Forms.Timer easeTimer;
 
->>>>>>> eb4b6bb4b80003f782be2f6cb687f59cf5f3015e
 
         public PressYourLuckGameForm()
         {
@@ -87,7 +80,6 @@ namespace Press_Your_Luck_Game
             borderCounter++;
         }
 
-<<<<<<< HEAD
         //Purpose: reads all questions and answers from file and returns the number of pairs read
         //Requires: none
         //Returns: number of pars of questions and answers in the file
@@ -119,8 +111,6 @@ namespace Press_Your_Luck_Game
             }
 
         }
-=======
->>>>>>> eb4b6bb4b80003f782be2f6cb687f59cf5f3015e
 
 
         private void reassignTimer_Tick(object sender, EventArgs e)
