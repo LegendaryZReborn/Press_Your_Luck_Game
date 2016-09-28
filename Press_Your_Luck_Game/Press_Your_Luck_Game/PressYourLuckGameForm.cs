@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,18 +15,20 @@ namespace Press_Your_Luck_Game
 {
     public partial class PressYourLuckGameForm : Form
     {
+        const int MAX_QUESTIONS = 100;
+
+        QAStructure[] qaStructure = new QAStructure[MAX_QUESTIONS];
         PictureBox[] pictureBoxes = new PictureBox[18];
         String boxname = "pictureBox";
         String boxnames = "";
         int i = 0;
-       System.Windows.Forms.Timer timer1;
+        System.Windows.Forms.Timer timer1;
 
         public PressYourLuckGameForm()
         {
             InitializeComponent();
 
-            QAStructure[] qas = new QAStructure[3];
-            
+            readQuestions("..\\..\\luckfile.txt");
 
             BorderBox.SizeMode = PictureBoxSizeMode.StretchImage;
             BorderBox.BackColor = Color.Transparent;
@@ -36,7 +39,6 @@ namespace Press_Your_Luck_Game
            
             for (int i = 0; i < 18; i++)
             {
-
                 boxnames = boxname + (i + 1);
                 pictureBoxes[i] = this.Controls.Find(boxnames, true).FirstOrDefault() as PictureBox;
                 pictureBoxes[i].SizeMode = PictureBoxSizeMode.StretchImage;
@@ -69,7 +71,37 @@ namespace Press_Your_Luck_Game
             i++;
         }
 
-       
+        //Purpose: reads all questions and answers from file and returns the number of pairs read
+        //Requires: none
+        //Returns: number of pars of questions and answers in the file
+        public int readQuestions(string file)
+        {
+            StreamReader streamReader;
+
+            //try reading from file first
+            try
+            {
+                streamReader = new StreamReader(file);
+                int count;
+                //read all questions and answers and keep track of number read
+                for(count = 0; !streamReader.EndOfStream && count < MAX_QUESTIONS; ++count)
+                {
+                    qaStructure[count] = new QAStructure();
+                    qaStructure[count].Question = streamReader.ReadLine();
+                    qaStructure[count].Answer = streamReader.ReadLine();
+                }
+
+                //return count of pairs of questions and answers
+                return count;
+            }
+            catch (Exception exception)
+            {
+                //notify user that file could not be read
+                
+                return -1; //exit from program
+            }
+
+        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -86,6 +118,7 @@ namespace Press_Your_Luck_Game
             BorderBox.Visible = true;
             timer1.Start();
         }
+
     }
 
 }
