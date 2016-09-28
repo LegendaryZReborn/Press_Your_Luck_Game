@@ -15,25 +15,20 @@ namespace Press_Your_Luck_Game
 {
     public partial class PressYourLuckGameForm : Form
     {
-        const int MAX_QUESTIONS = 100;
-
-        QAStructure[] qaStructure = new QAStructure[MAX_QUESTIONS];
-      
         private PictureBox[] pictureBoxes = new PictureBox[18];
         private String boxname = "pictureBox";
         private String boxnames = "";
         private int borderCounter = 0;
         private System.Windows.Forms.Timer reassignTimer;
         private System.Windows.Forms.Timer easeTimer;
+        QuestionAnswerForm qAForm;
 
 
         public PressYourLuckGameForm()
         {
             InitializeComponent();
-
-            readQuestions("..\\..\\luckfile.txt");
-
             BorderBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            BorderBox.BorderStyle = BorderStyle.Fixed3D;
             BorderBox.BackColor = Color.Transparent;
             BorderBox.Parent = pictureBox1;
             BorderBox.Location = new Point(0, 0);
@@ -45,6 +40,7 @@ namespace Press_Your_Luck_Game
                 boxnames = boxname + (i + 1);
                 pictureBoxes[i] = this.Controls.Find(boxnames, true).FirstOrDefault() as PictureBox;
                 pictureBoxes[i].SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureBoxes[i].BorderStyle = BorderStyle.Fixed3D;
             }
 
             Space[] boardSpaces = new Space[18];
@@ -56,7 +52,9 @@ namespace Press_Your_Luck_Game
             InitTimer();
         }
 
-
+        //Purpose: Initializes the two timers required to spin and stop the BorderBox
+        //Requires: nothing
+        //Returns: nothing
         private void InitTimer()
         {
             reassignTimer = new System.Windows.Forms.Timer();
@@ -69,70 +67,32 @@ namespace Press_Your_Luck_Game
 
         }
 
-       private void reassignBorder()
+        //Purpose: Reassigns the border's parent from one picture box to 
+        //another
+        //Requires: nothing
+        //Returns: nothing
+        private void reassignBorder()
         {
             if (borderCounter == 18)
                 borderCounter = 0;
 
-            // code here will run every second
             BorderBox.Parent = pictureBoxes[borderCounter];
             BorderBox.Location = new Point(0, 0);
             borderCounter++;
         }
 
-        //Purpose: reads all questions and answers from file and returns the number of pairs read
-        //Requires: none
-        //Returns: number of pars of questions and answers in the file
-        public int readQuestions(string file)
-        {
-            StreamReader streamReader;
-
-            //try reading from file first
-            try
-            {
-                streamReader = new StreamReader(file);
-                int count;
-                //read all questions and answers and keep track of number read
-                for(count = 0; !streamReader.EndOfStream && count < MAX_QUESTIONS; ++count)
-                {
-                    qaStructure[count] = new QAStructure();
-                    qaStructure[count].Question = streamReader.ReadLine();
-                    qaStructure[count].Answer = streamReader.ReadLine();
-                }
-
-                //return count of pairs of questions and answers
-                return count;
-            }
-            catch (Exception exception)
-            {
-                //notify user that file could not be read
-                
-                return -1; //exit from program
-            }
-
-        }
-
-
+        //Purpose: Calls the reassignBorder function every reassignTimer.Interval
+        //Requires: object sender, EventArgs e
+        //Returns: nothing
         private void reassignTimer_Tick(object sender, EventArgs e)
         {
             reassignBorder();
         }
 
-        private void Stop_Click(object sender, EventArgs e)
-        {
-            easeTimer.Start();
-        }
 
-        private void Spin_Click(object sender, EventArgs e)
-        {
-            if (reassignTimer.Interval >= 500)
-            {
-                BorderBox.Visible = true;
-                reassignTimer.Interval = 10; // in reassignTimer = new System.Windows.Forms.Timer();
-                reassignTimer.Start();
-            }
-        }
-
+        //Purpose: Decreases the reassignTimer.Interval every easeTimer.Interval
+        //Requires: object sender, EventArgs e
+        //Returns: nothing
         private void easeTimer_Tick(object sender, EventArgs e)
         {
             //decrease reassignTimer inverval
@@ -145,6 +105,35 @@ namespace Press_Your_Luck_Game
             }
         }
 
+        //Purpose: Starts stopping the BorderBox from spinning around the spaces
+        //Requires: object sender, EventArgs e
+        //Returns: nothing
+        private void Stop_Click(object sender, EventArgs e)
+        {
+            easeTimer.Start();
+        }
+
+
+        //Purpose: Starts spinning the BorderBox around the board,
+        //if reassignTimer.Interval >= 500
+        //Requires: object sender, EventArgs e
+        //Returns: nothing
+        private void Spin_Click(object sender, EventArgs e)
+        {
+            if (reassignTimer.Interval >= 500)
+            {
+                BorderBox.Visible = true;
+                reassignTimer.Interval = 10; // in reassignTimer = new System.Windows.Forms.Timer();
+                reassignTimer.Start();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            qAForm = new QuestionAnswerForm();
+            qAForm.Show();
+
+        }
     }
 
 }
