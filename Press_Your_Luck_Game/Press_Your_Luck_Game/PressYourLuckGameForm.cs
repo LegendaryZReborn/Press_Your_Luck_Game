@@ -128,11 +128,10 @@ namespace Press_Your_Luck_Game
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void startQ_Click(object sender, EventArgs e)
         {
             qAForm = new QuestionAnswerForm();
             qAForm.Show();
-
         }
     }
 

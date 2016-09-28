@@ -49,7 +49,7 @@
             this.BorderBox = new System.Windows.Forms.PictureBox();
             this.Stop = new System.Windows.Forms.Button();
             this.Spin = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.startQ = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -249,17 +249,17 @@
             this.Spin.UseVisualStyleBackColor = false;
             this.Spin.Click += new System.EventHandler(this.Spin_Click);
             // 
-            // button1
+            // startQ
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.button1.Font = new System.Drawing.Font("Modern No. 20", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(158, 299);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(475, 46);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "START QUESTIONING!";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.startQ.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.startQ.Font = new System.Drawing.Font("Modern No. 20", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startQ.Location = new System.Drawing.Point(158, 299);
+            this.startQ.Name = "startQ";
+            this.startQ.Size = new System.Drawing.Size(475, 46);
+            this.startQ.TabIndex = 21;
+            this.startQ.Text = "START QUESTIONING!";
+            this.startQ.UseVisualStyleBackColor = false;
+            this.startQ.Click += new System.EventHandler(this.startQ_Click);
             // 
             // PressYourLuckGameForm
             // 
@@ -267,7 +267,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(789, 467);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.startQ);
             this.Controls.Add(this.Spin);
             this.Controls.Add(this.Stop);
             this.Controls.Add(this.BorderBox);
@@ -337,7 +337,7 @@
         private System.Windows.Forms.PictureBox BorderBox;
         private System.Windows.Forms.Button Stop;
         private System.Windows.Forms.Button Spin;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button startQ;
     }
 }
 
