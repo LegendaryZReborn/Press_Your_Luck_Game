@@ -21,7 +21,7 @@ namespace Press_Your_Luck_Game
         private int borderCounter = 0;
         private System.Windows.Forms.Timer reassignTimer;
         private System.Windows.Forms.Timer easeTimer;
-        QuestionAnswerForm qAForm;
+        QuestionAnswerForm qAForm = new QuestionAnswerForm();
 
 
         public PressYourLuckGameForm()
@@ -130,8 +130,8 @@ namespace Press_Your_Luck_Game
 
         private void startQ_Click(object sender, EventArgs e)
         {
-            qAForm = new QuestionAnswerForm();
-            qAForm.Show();
+            //here assign number of spins returned from question form to a variable
+            qAForm.startQuestioning();
         }
     }
 
