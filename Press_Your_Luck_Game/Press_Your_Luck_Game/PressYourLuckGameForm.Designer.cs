@@ -49,6 +49,7 @@
             this.BorderBox = new System.Windows.Forms.PictureBox();
             this.Stop = new System.Windows.Forms.Button();
             this.Spin = new System.Windows.Forms.Button();
+            this.startQ = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -224,10 +225,10 @@
             // 
             // Stop
             // 
-            this.Stop.BackColor = System.Drawing.Color.Red;
+            this.Stop.BackColor = System.Drawing.Color.DarkRed;
             this.Stop.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Stop.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Stop.Location = new System.Drawing.Point(452, 154);
+            this.Stop.Location = new System.Drawing.Point(467, 121);
             this.Stop.Name = "Stop";
             this.Stop.Size = new System.Drawing.Size(166, 158);
             this.Stop.TabIndex = 19;
@@ -237,10 +238,10 @@
             // 
             // Spin
             // 
-            this.Spin.BackColor = System.Drawing.Color.Red;
+            this.Spin.BackColor = System.Drawing.Color.Firebrick;
             this.Spin.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Spin.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Spin.Location = new System.Drawing.Point(186, 154);
+            this.Spin.Location = new System.Drawing.Point(158, 121);
             this.Spin.Name = "Spin";
             this.Spin.Size = new System.Drawing.Size(166, 158);
             this.Spin.TabIndex = 20;
@@ -248,11 +249,25 @@
             this.Spin.UseVisualStyleBackColor = false;
             this.Spin.Click += new System.EventHandler(this.Spin_Click);
             // 
+            // startQ
+            // 
+            this.startQ.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.startQ.Font = new System.Drawing.Font("Modern No. 20", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startQ.Location = new System.Drawing.Point(158, 299);
+            this.startQ.Name = "startQ";
+            this.startQ.Size = new System.Drawing.Size(475, 46);
+            this.startQ.TabIndex = 21;
+            this.startQ.Text = "START QUESTIONING!";
+            this.startQ.UseVisualStyleBackColor = false;
+            this.startQ.Click += new System.EventHandler(this.startQ_Click);
+            // 
             // PressYourLuckGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(789, 467);
+            this.Controls.Add(this.startQ);
             this.Controls.Add(this.Spin);
             this.Controls.Add(this.Stop);
             this.Controls.Add(this.BorderBox);
@@ -275,7 +290,7 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Name = "PressYourLuckGameForm";
-            this.Text = "Form1";
+            this.Text = "Press Your Luck";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -322,6 +337,7 @@
         private System.Windows.Forms.PictureBox BorderBox;
         private System.Windows.Forms.Button Stop;
         private System.Windows.Forms.Button Spin;
+        private System.Windows.Forms.Button startQ;
     }
 }
 
