@@ -21,7 +21,8 @@ namespace Press_Your_Luck_Game
         private int borderCounter = 0;
         private System.Windows.Forms.Timer reassignTimer;
         private System.Windows.Forms.Timer easeTimer;
-        QuestionAnswerForm qAForm = new QuestionAnswerForm();
+        QuestionAnswerForm qAForm;
+        Player player1 = new Player(), player2 = new Player();
 
 
         public PressYourLuckGameForm()
@@ -34,6 +35,7 @@ namespace Press_Your_Luck_Game
             BorderBox.Location = new Point(0, 0);
             BorderBox.Image = Image.FromFile("..\\..\\Images\\Misc\\Border.gif");
             BorderBox.Visible = false;
+            qAForm = new QuestionAnswerForm();
 
             for (int i = 0; i < 18; i++)
             {
@@ -131,7 +133,17 @@ namespace Press_Your_Luck_Game
         private void startQ_Click(object sender, EventArgs e)
         {
             //here assign number of spins returned from question form to a variable
+            getPlayerSpins(player1);
+            getPlayerSpins(player2);
+            
+            //maybe we want to deactivate start question button here until users have done used their spins
+        }
+
+        private void getPlayerSpins(Player player)
+        {
             qAForm.startQuestioning();
+            qAForm.ShowDialog(this);
+            player.Spins = qAForm.CorrectAnswers;
         }
     }
 

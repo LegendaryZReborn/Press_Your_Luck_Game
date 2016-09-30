@@ -18,12 +18,17 @@ namespace Press_Your_Luck_Game
         private const int MAX_QUESTIONS = 100;
         private int num_questions;
         private string fileDir = "..\\..\\luckfile.txt";
-        private QAStructure[] qaStructure = new QAStructure[MAX_QUESTIONS];
+        private static QAStructure[] qaStructure = new QAStructure[MAX_QUESTIONS];
         private static int questionCount = 0;
+        private static int questionIndex = 0;
+        private int correctAnswers = 0;
+        private const int MAX_QUESTIONS_ASK = 3;
+      //  private PressYourLuckGameForm game_user_form;
 
-        public QuestionAnswerForm()
+        public QuestionAnswerForm(/*PressYourLuckGameForm game_form*/)
         {
             InitializeComponent();
+           // game_user_form = game_form;
             submitButton.Enabled = false;
             nextButton.Enabled = false;
             answerBox.ReadOnly = true;
@@ -58,10 +63,21 @@ namespace Press_Your_Luck_Game
             catch (Exception exception)
             {
                 //notify user that file could not be read
-
+                MessageBox.Show("Error" + exception.Data, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return -1; //exit from program
             }
 
+        }
+
+        public void startQuestioning()
+        {
+            //call show method here
+            questionBox.Text = "Press the 'start' button to start answering questions.";
+            answerBox.ReadOnly = true;
+            startButton.Enabled = true;
+            correctAnswers = 0;
+            questionCount = 0;
+            answerBox.Clear();
         }
 
 
@@ -72,9 +88,9 @@ namespace Press_Your_Luck_Game
         {
             startButton.Enabled = false;
             answerBox.ReadOnly = false;
+            nextButton.Text = "Next";
             answerBox.Clear();
             askQuestion();
-
         }
 
         //Purpose: Asks the user a questions 
@@ -82,9 +98,10 @@ namespace Press_Your_Luck_Game
         //Returns: nothing
         private void askQuestion()
         {
-            questionBox.Text = qaStructure[questionCount].Question;
+            questionBox.Text = qaStructure[questionIndex].Question;
             answerBox.ReadOnly = false;
             submitButton.Enabled = true;
+            nextButton.Enabled = true;
         }
         
         //Purpose: Accepts the users input answer and evaluates it.
@@ -95,14 +112,14 @@ namespace Press_Your_Luck_Game
         {
             submitButton.Enabled = false;
             userAns = answerBox.Text.ToLower();
-            correctAns = qaStructure[questionCount].Answer.ToLower();
+            correctAns = qaStructure[questionIndex].Answer.ToLower();
 
             if (userAns == correctAns)
             {
                 verdictLabel.ForeColor = Color.Lime;
                 verdictLabel.Text = "CORRECT!";
                 //INCREMENT PLAYER SPINS HERE
-
+                ++correctAnswers;
 
             }
             else
@@ -111,18 +128,15 @@ namespace Press_Your_Luck_Game
                 verdictLabel.Text = "WRONG!";
             }
 
-            if ((questionCount + 1) % 3 == 0)
+            ++questionCount;
+            if (questionCount == MAX_QUESTIONS_ASK)
                 nextButton.Text = "Finish";
 
-            questionCount++;
+            questionIndex = (questionIndex + 1) % num_questions;
 
             //CHANGE THIS LATER; PERHAPS WHEN ALL QUESTIONS RUN OUT THE GAME IS DONE
             //OR PLAYERS CAN PICK NUMBER OF ROUNDS IDK
             
-            if (questionCount >= num_questions) //only check number of questions in input file, not the whole array
-                questionCount = 0;
-            
-            nextButton.Enabled = true;
         }
 
         //Purpose: Clears the answer and verdict boxes; calls the 
@@ -134,19 +148,16 @@ namespace Press_Your_Luck_Game
             answerBox.Clear();
             verdictLabel.Text = "";
 
-            if(nextButton.Text != "Finish")
-               askQuestion();
+            if (nextButton.Text != "Finish")
+            {
+                questionIndex = (questionIndex + 1) % num_questions;
+                askQuestion();
+            }
             else
-               this.Close();
-        }
-
-        public void startQuestioning()
-        {
-            //call show method here
-            this.Show();
-
-            //we can do other stuff here if we want, like calculate number of spins for user and return to
-            //the game form
+            {
+                setDialogResults();
+                this.Close();
+            }
         }
 
         //Purpose: generate MAX_DISPLAY_Q rnadom questions
@@ -166,6 +177,26 @@ namespace Press_Your_Luck_Game
                 qaStructure[rand_index] = temp;
             }
             
+        }
+
+        private void QuestionAnswerForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            setDialogResults();
+           // game_user_form.Enabled = true;
+        }
+
+        public int CorrectAnswers
+        {
+            get
+            {
+                return correctAnswers;
+            }
+
+        }
+
+        private void setDialogResults()
+        {
+            this.DialogResult = DialogResult.OK;
         }
     }
 }
