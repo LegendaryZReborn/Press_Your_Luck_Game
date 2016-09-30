@@ -13,11 +13,13 @@ namespace Press_Your_Luck_Game
     {
         private int cash;
         private int spins;
+        private string name;
 
         public Player()
         {
             cash = 0;
             spins = 0;
+            name = "John Doe";
         }
 
         public int Spins
@@ -47,6 +49,18 @@ namespace Press_Your_Luck_Game
             set
             {
                 this.cash = value < 0 ? this.cash : value;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                this.name = value;
             }
         }
     }

@@ -141,7 +141,7 @@ namespace Press_Your_Luck_Game
 
         private void getPlayerSpins(Player player)
         {
-            qAForm.startQuestioning();
+            qAForm.startQuestioning(player.Name);
             qAForm.ShowDialog(this);
             player.Spins = qAForm.CorrectAnswers;
         }

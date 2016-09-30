@@ -69,9 +69,10 @@ namespace Press_Your_Luck_Game
 
         }
 
-        public void startQuestioning()
+        public void startQuestioning(string name)
         {
             //call show method here
+            this.Text = "Questions for " + name;
             questionBox.Text = "Press the 'start' button to start answering questions.";
             answerBox.ReadOnly = true;
             startButton.Enabled = true;
