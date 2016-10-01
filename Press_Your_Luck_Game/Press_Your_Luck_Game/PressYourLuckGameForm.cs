@@ -135,8 +135,11 @@ namespace Press_Your_Luck_Game
             //here assign number of spins returned from question form to a variable
             getPlayerSpins(player1);
             getPlayerSpins(player2);
-            
+
+            player1_spins_textBox.Text = player1.Spins.ToString();
+            player2_spins_textBox.Text = player2.Spins.ToString();
             //maybe we want to deactivate start question button here until users have done used their spins
+
         }
 
         private void getPlayerSpins(Player player)
