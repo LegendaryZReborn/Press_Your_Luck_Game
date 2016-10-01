@@ -16,13 +16,13 @@ namespace Press_Your_Luck_Game
         private string userAns = "";
         private string correctAns = "";
         private const int MAX_QUESTIONS = 100;
-        private int num_questions;
+        private int num_questions; //number of questions read from the input file
         private string fileDir = "..\\..\\luckfile.txt";
         private static QAStructure[] qaStructure = new QAStructure[MAX_QUESTIONS];
-        private static int questionCount = 0;
-        private static int questionIndex = 0;
-        private int correctAnswers = 0;
-        private const int MAX_QUESTIONS_ASK = 3;
+        private static int questionCount = 0; //number of questions answered since last startQuestioning call
+        private static int questionIndex = 0; //used to index into question and answers array
+        private int correctAnswers = 0; //number of correct answers since startQuestioning was called
+        private const int MAX_QUESTIONS_ASK = 3; //maximum questions to ask player at a time
       //  private PressYourLuckGameForm game_user_form;
 
         public QuestionAnswerForm(/*PressYourLuckGameForm game_form*/)
@@ -33,7 +33,16 @@ namespace Press_Your_Luck_Game
             nextButton.Enabled = false;
             answerBox.ReadOnly = true;
             num_questions = readQuestions(fileDir);
-            shuffleQuestions();
+            if(num_questions < 1)
+            {
+                MessageBox.Show("No Questions and answers in file", "Invalid Input file", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                //somehow disable Question form
+            }
+            else
+            {
+                shuffleQuestions();
+            }
         }
 
 
@@ -76,6 +85,8 @@ namespace Press_Your_Luck_Game
             questionBox.Text = "Press the 'start' button to start answering questions.";
             answerBox.ReadOnly = true;
             startButton.Enabled = true;
+            submitButton.Enabled = false;
+            nextButton.Enabled = false;
             correctAnswers = 0;
             questionCount = 0;
             answerBox.Clear();
@@ -102,9 +113,9 @@ namespace Press_Your_Luck_Game
             questionBox.Text = qaStructure[questionIndex].Question;
             answerBox.ReadOnly = false;
             submitButton.Enabled = true;
-            nextButton.Enabled = true;
+            nextButton.Enabled = false;
         }
-        
+
         //Purpose: Accepts the users input answer and evaluates it.
         //Increments players number of spins if their answer is correct.
         //Requires: object sender, EventArgs
@@ -129,15 +140,14 @@ namespace Press_Your_Luck_Game
                 verdictLabel.Text = "WRONG!";
             }
 
-            ++questionCount;
-            if (questionCount == MAX_QUESTIONS_ASK)
+            if (questionCount == MAX_QUESTIONS_ASK - 1)
                 nextButton.Text = "Finish";
 
             questionIndex = (questionIndex + 1) % num_questions;
-
+            nextButton.Enabled = true;
             //CHANGE THIS LATER; PERHAPS WHEN ALL QUESTIONS RUN OUT THE GAME IS DONE
             //OR PLAYERS CAN PICK NUMBER OF ROUNDS IDK
-            
+
         }
 
         //Purpose: Clears the answer and verdict boxes; calls the 
@@ -152,7 +162,16 @@ namespace Press_Your_Luck_Game
             if (nextButton.Text != "Finish")
             {
                 questionIndex = (questionIndex + 1) % num_questions;
-                askQuestion();
+                ++questionCount;
+                if (questionCount == MAX_QUESTIONS_ASK)
+                {
+                    nextButton.Text = "Finish";
+                    submitButton.Enabled = false;
+                }
+                else
+                {
+                    askQuestion();
+                }
             }
             else
             {
