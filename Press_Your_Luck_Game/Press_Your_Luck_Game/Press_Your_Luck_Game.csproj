@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PlayersNamesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlayersNamesForm.Designer.cs">
+      <DependentUpon>PlayersNamesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PressYourLuckGameForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +69,9 @@
       <DependentUpon>QuestionAnswerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Space.cs" />
+    <EmbeddedResource Include="PlayersNamesForm.resx">
+      <DependentUpon>PlayersNamesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PressYourLuckGameForm.resx">
       <DependentUpon>PressYourLuckGameForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -23,6 +23,7 @@ namespace Press_Your_Luck_Game
         private System.Windows.Forms.Timer easeTimer;
         QuestionAnswerForm qAForm;
         Player player1 = new Player(), player2 = new Player();
+        PlayersNamesForm playersNamesForm = new PlayersNamesForm();
 
 
         public PressYourLuckGameForm()
@@ -50,6 +51,8 @@ namespace Press_Your_Luck_Game
             {
                 boardSpaces[i] = new Space(pictureBoxes[i]);
             }
+
+            initPlayers();
 
             InitTimer();
         }
@@ -144,6 +147,19 @@ namespace Press_Your_Luck_Game
             qAForm.startQuestioning(player.Name);
             qAForm.ShowDialog(this);
             player.Spins = qAForm.CorrectAnswers;
+        }
+
+        private void initPlayers()
+        {
+            //Get players' names
+            playersNamesForm.ShowDialog();
+            String name1 = "", name2 = "";
+
+            playersNamesForm.getPlayersNames(ref name1, ref name2);
+            player1.Name = name1;
+            player2.Name = name2;
+            player1_groupBox.Text = player1.Name;
+            player2_groupBox.Text = player2.Name;
         }
     }
 

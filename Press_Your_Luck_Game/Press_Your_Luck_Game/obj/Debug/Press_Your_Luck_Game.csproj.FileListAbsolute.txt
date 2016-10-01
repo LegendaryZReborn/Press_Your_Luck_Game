@@ -8,3 +8,4 @@ C:\Repos\Press_Your_Luck_Game\Press_Your_Luck_Game\Press_Your_Luck_Game\obj\Debu
 C:\Repos\Press_Your_Luck_Game\Press_Your_Luck_Game\Press_Your_Luck_Game\obj\Debug\Press_Your_Luck_Game.csproj.GenerateResource.Cache
 C:\Repos\Press_Your_Luck_Game\Press_Your_Luck_Game\Press_Your_Luck_Game\obj\Debug\Press_Your_Luck_Game.exe
 C:\Repos\Press_Your_Luck_Game\Press_Your_Luck_Game\Press_Your_Luck_Game\obj\Debug\Press_Your_Luck_Game.pdb
+C:\Repos\Press_Your_Luck_Game\Press_Your_Luck_Game\Press_Your_Luck_Game\obj\Debug\Press_Your_Luck_Game.PlayersNamesForm.resources

@@ -19,7 +19,6 @@ namespace Press_Your_Luck_Game
         {
             cash = 0;
             spins = 0;
-            name = "John Doe";
         }
 
         public int Spins
