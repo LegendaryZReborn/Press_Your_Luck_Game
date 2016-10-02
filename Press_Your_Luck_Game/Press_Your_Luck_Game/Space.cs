@@ -12,10 +12,11 @@ namespace Press_Your_Luck_Game
     class Space
     {
         private PictureBox spacePBox;
-        private String[] spaceEvents = new String[2];
+        private const int numEvents = 4;
+        private String[] spaceEvents = new String[numEvents];
         private String sEvent;
         private int eventVal;
-        private Dictionary<String, int> eveNVal = new Dictionary<String, int>();
+        private KeyValuePair<String, int> eveNVal;
         static private Random r = new Random();
 
         //Parameterized Constructor. Must give it a picture Box.
@@ -25,7 +26,8 @@ namespace Press_Your_Luck_Game
             eventVal = 0;
 
             spaceEvents[0] = "Whammy";
-            spaceEvents[1] = "Cash";
+            for (int i = 1; i < numEvents; i++)
+                spaceEvents[i] = "Cash";
 
             spacePBox = p;
 
@@ -37,7 +39,7 @@ namespace Press_Your_Luck_Game
         public void randomizeSpace()
         {
             String dir = "..\\..\\Images";
-            int val = r.Next(0, 2);
+            int val = r.Next(0, numEvents);
             sEvent = spaceEvents[val];
 
             //creates a value between 1 and 20 that are multiples of 5
@@ -61,14 +63,15 @@ namespace Press_Your_Luck_Game
 
             }
 
-            eveNVal.Clear();
-            eveNVal.Add(sEvent, eventVal);
+            if (sEvent == "Whammy" && eventVal == 20)
+                eventVal = 0;
 
+            eveNVal = new KeyValuePair<string, int>(sEvent, eventVal);
 
         }
 
 
-        public Dictionary<string, int> EventNVa
+        public KeyValuePair<string, int> EventNVal
         {
             get
             {

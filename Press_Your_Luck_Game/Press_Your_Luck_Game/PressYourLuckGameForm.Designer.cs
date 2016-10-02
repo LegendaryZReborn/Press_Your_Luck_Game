@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PressYourLuckGameForm));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -47,19 +48,19 @@
             this.pictureBox17 = new System.Windows.Forms.PictureBox();
             this.pictureBox18 = new System.Windows.Forms.PictureBox();
             this.BorderBox = new System.Windows.Forms.PictureBox();
-            this.Stop = new System.Windows.Forms.Button();
-            this.Spin = new System.Windows.Forms.Button();
-            this.startQ = new System.Windows.Forms.Button();
+            this.stopButton = new System.Windows.Forms.Button();
             this.player1_groupBox = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.player1_spins_textBox = new System.Windows.Forms.TextBox();
             this.player1_cash_textBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.player1_spins_textBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.player2_groupBox = new System.Windows.Forms.GroupBox();
             this.player2_cash_textBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.player2_spins_textBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.PressYourLuckSpin = new System.Windows.Forms.PictureBox();
+            this.currentStatusL = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -81,6 +82,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.BorderBox)).BeginInit();
             this.player1_groupBox.SuspendLayout();
             this.player2_groupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PressYourLuckSpin)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -235,43 +237,18 @@
             this.BorderBox.TabIndex = 18;
             this.BorderBox.TabStop = false;
             // 
-            // Stop
+            // stopButton
             // 
-            this.Stop.BackColor = System.Drawing.Color.DarkRed;
-            this.Stop.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Stop.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Stop.Location = new System.Drawing.Point(467, 121);
-            this.Stop.Name = "Stop";
-            this.Stop.Size = new System.Drawing.Size(166, 158);
-            this.Stop.TabIndex = 19;
-            this.Stop.Text = "STOP";
-            this.Stop.UseVisualStyleBackColor = false;
-            this.Stop.Click += new System.EventHandler(this.Stop_Click);
-            // 
-            // Spin
-            // 
-            this.Spin.BackColor = System.Drawing.Color.Firebrick;
-            this.Spin.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Spin.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Spin.Location = new System.Drawing.Point(158, 121);
-            this.Spin.Name = "Spin";
-            this.Spin.Size = new System.Drawing.Size(166, 158);
-            this.Spin.TabIndex = 20;
-            this.Spin.Text = "SPIN";
-            this.Spin.UseVisualStyleBackColor = false;
-            this.Spin.Click += new System.EventHandler(this.Spin_Click);
-            // 
-            // startQ
-            // 
-            this.startQ.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.startQ.Font = new System.Drawing.Font("Modern No. 20", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startQ.Location = new System.Drawing.Point(158, 299);
-            this.startQ.Name = "startQ";
-            this.startQ.Size = new System.Drawing.Size(475, 46);
-            this.startQ.TabIndex = 21;
-            this.startQ.Text = "START QUESTIONING!";
-            this.startQ.UseVisualStyleBackColor = false;
-            this.startQ.Click += new System.EventHandler(this.startQ_Click);
+            this.stopButton.BackColor = System.Drawing.Color.DarkRed;
+            this.stopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stopButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.stopButton.Location = new System.Drawing.Point(849, 365);
+            this.stopButton.Name = "stopButton";
+            this.stopButton.Size = new System.Drawing.Size(166, 98);
+            this.stopButton.TabIndex = 19;
+            this.stopButton.Text = "STOP";
+            this.stopButton.UseVisualStyleBackColor = false;
+            this.stopButton.Click += new System.EventHandler(this.Stop_Click);
             // 
             // player1_groupBox
             // 
@@ -285,22 +262,6 @@
             this.player1_groupBox.TabIndex = 22;
             this.player1_groupBox.TabStop = false;
             this.player1_groupBox.Text = "Player 1";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(33, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Spins";
-            // 
-            // player1_spins_textBox
-            // 
-            this.player1_spins_textBox.Location = new System.Drawing.Point(75, 37);
-            this.player1_spins_textBox.Name = "player1_spins_textBox";
-            this.player1_spins_textBox.Size = new System.Drawing.Size(100, 20);
-            this.player1_spins_textBox.TabIndex = 1;
             // 
             // player1_cash_textBox
             // 
@@ -317,6 +278,22 @@
             this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Cash";
+            // 
+            // player1_spins_textBox
+            // 
+            this.player1_spins_textBox.Location = new System.Drawing.Point(75, 37);
+            this.player1_spins_textBox.Name = "player1_spins_textBox";
+            this.player1_spins_textBox.Size = new System.Drawing.Size(100, 20);
+            this.player1_spins_textBox.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(27, 40);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(33, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Spins";
             // 
             // player2_groupBox
             // 
@@ -363,17 +340,37 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Spins";
             // 
+            // PressYourLuckSpin
+            // 
+            this.PressYourLuckSpin.Image = ((System.Drawing.Image)(resources.GetObject("PressYourLuckSpin.Image")));
+            this.PressYourLuckSpin.Location = new System.Drawing.Point(140, 100);
+            this.PressYourLuckSpin.Name = "PressYourLuckSpin";
+            this.PressYourLuckSpin.Size = new System.Drawing.Size(506, 270);
+            this.PressYourLuckSpin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PressYourLuckSpin.TabIndex = 24;
+            this.PressYourLuckSpin.TabStop = false;
+            this.PressYourLuckSpin.Click += new System.EventHandler(this.PressYourLuckSpin_Click);
+            // 
+            // currentStatusL
+            // 
+            this.currentStatusL.AutoSize = true;
+            this.currentStatusL.Font = new System.Drawing.Font("HACKED", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentStatusL.Location = new System.Drawing.Point(819, 12);
+            this.currentStatusL.Name = "currentStatusL";
+            this.currentStatusL.Size = new System.Drawing.Size(0, 25);
+            this.currentStatusL.TabIndex = 25;
+            // 
             // PressYourLuckGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1063, 467);
+            this.Controls.Add(this.currentStatusL);
+            this.Controls.Add(this.PressYourLuckSpin);
             this.Controls.Add(this.player2_groupBox);
             this.Controls.Add(this.player1_groupBox);
-            this.Controls.Add(this.startQ);
-            this.Controls.Add(this.Spin);
-            this.Controls.Add(this.Stop);
+            this.Controls.Add(this.stopButton);
             this.Controls.Add(this.BorderBox);
             this.Controls.Add(this.pictureBox18);
             this.Controls.Add(this.pictureBox17);
@@ -418,7 +415,9 @@
             this.player1_groupBox.PerformLayout();
             this.player2_groupBox.ResumeLayout(false);
             this.player2_groupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PressYourLuckSpin)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -443,9 +442,7 @@
         private System.Windows.Forms.PictureBox pictureBox17;
         private System.Windows.Forms.PictureBox pictureBox18;
         private System.Windows.Forms.PictureBox BorderBox;
-        private System.Windows.Forms.Button Stop;
-        private System.Windows.Forms.Button Spin;
-        private System.Windows.Forms.Button startQ;
+        private System.Windows.Forms.Button stopButton;
         private System.Windows.Forms.GroupBox player1_groupBox;
         private System.Windows.Forms.TextBox player1_cash_textBox;
         private System.Windows.Forms.Label label2;
@@ -456,6 +453,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox player2_spins_textBox;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox PressYourLuckSpin;
+        private System.Windows.Forms.Label currentStatusL;
     }
 }
 
