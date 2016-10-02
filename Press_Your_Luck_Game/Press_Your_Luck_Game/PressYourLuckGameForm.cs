@@ -15,14 +15,16 @@ namespace Press_Your_Luck_Game
 {
     public partial class PressYourLuckGameForm : Form
     {
-        private PictureBox[] pictureBoxes = new PictureBox[18];
+        private const int NUM_SPACES = 18;
+        private PictureBox[] pictureBoxes = new PictureBox[NUM_SPACES];
         private String boxname = "pictureBox";
         private String boxnames = "";
         private int borderCounter = 0;
         private System.Windows.Forms.Timer reassignTimer;
         private System.Windows.Forms.Timer easeTimer;
-        QuestionAnswerForm qAForm;
-
+        private QuestionAnswerForm qAForm;
+        private Player player1 = new Player(), player2 = new Player();
+        private PlayersNamesForm playersNamesForm = new PlayersNamesForm();
 
         public PressYourLuckGameForm()
         {
@@ -34,8 +36,9 @@ namespace Press_Your_Luck_Game
             BorderBox.Location = new Point(0, 0);
             BorderBox.Image = Image.FromFile("..\\..\\Images\\Misc\\Border.gif");
             BorderBox.Visible = false;
+            qAForm = new QuestionAnswerForm();
 
-            for (int i = 0; i < 18; i++)
+            for (int i = 0; i < NUM_SPACES; i++)
             {
                 boxnames = boxname + (i + 1);
                 pictureBoxes[i] = this.Controls.Find(boxnames, true).FirstOrDefault() as PictureBox;
@@ -43,11 +46,13 @@ namespace Press_Your_Luck_Game
                 pictureBoxes[i].BorderStyle = BorderStyle.Fixed3D;
             }
 
-            Space[] boardSpaces = new Space[18];
-            for (int i = 0; i < 18; i++)
+            Space[] boardSpaces = new Space[NUM_SPACES];
+            for (int i = 0; i < NUM_SPACES; i++)
             {
                 boardSpaces[i] = new Space(pictureBoxes[i]);
             }
+
+            initPlayers();
 
             InitTimer();
         }
@@ -73,12 +78,9 @@ namespace Press_Your_Luck_Game
         //Returns: nothing
         private void reassignBorder()
         {
-            if (borderCounter == 18)
-                borderCounter = 0;
-
             BorderBox.Parent = pictureBoxes[borderCounter];
             BorderBox.Location = new Point(0, 0);
-            borderCounter++;
+            borderCounter = (borderCounter + 1) % NUM_SPACES;
         }
 
         //Purpose: Calls the reassignBorder function every reassignTimer.Interval
@@ -130,8 +132,34 @@ namespace Press_Your_Luck_Game
 
         private void startQ_Click(object sender, EventArgs e)
         {
-            qAForm = new QuestionAnswerForm();
-            qAForm.Show();
+            //here assign number of spins returned from question form to a variable
+            getPlayerSpins(player1);
+            getPlayerSpins(player2);
+
+            player1_spins_textBox.Text = player1.Spins.ToString();
+            player2_spins_textBox.Text = player2.Spins.ToString();
+            //maybe we want to deactivate start question button here until users have done used their spins
+
+        }
+
+        private void getPlayerSpins(Player player)
+        {
+            qAForm.startQuestioning(player.Name);
+            qAForm.ShowDialog(this);
+            player.Spins = qAForm.CorrectAnswers;
+        }
+
+        private void initPlayers()
+        {
+            //Get players' names
+            playersNamesForm.ShowDialog();
+            String name1 = "", name2 = "";
+
+            playersNamesForm.getPlayersNames(ref name1, ref name2);
+            player1.Name = name1;
+            player2.Name = name2;
+            player1_groupBox.Text = player1.Name;
+            player2_groupBox.Text = player2.Name;
         }
     }
 

@@ -50,6 +50,16 @@
             this.Stop = new System.Windows.Forms.Button();
             this.Spin = new System.Windows.Forms.Button();
             this.startQ = new System.Windows.Forms.Button();
+            this.player1_groupBox = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.player1_spins_textBox = new System.Windows.Forms.TextBox();
+            this.player1_cash_textBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.player2_groupBox = new System.Windows.Forms.GroupBox();
+            this.player2_cash_textBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.player2_spins_textBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -69,6 +79,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BorderBox)).BeginInit();
+            this.player1_groupBox.SuspendLayout();
+            this.player2_groupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -261,12 +273,104 @@
             this.startQ.UseVisualStyleBackColor = false;
             this.startQ.Click += new System.EventHandler(this.startQ_Click);
             // 
+            // player1_groupBox
+            // 
+            this.player1_groupBox.Controls.Add(this.player1_cash_textBox);
+            this.player1_groupBox.Controls.Add(this.label2);
+            this.player1_groupBox.Controls.Add(this.player1_spins_textBox);
+            this.player1_groupBox.Controls.Add(this.label1);
+            this.player1_groupBox.Location = new System.Drawing.Point(819, 63);
+            this.player1_groupBox.Name = "player1_groupBox";
+            this.player1_groupBox.Size = new System.Drawing.Size(215, 125);
+            this.player1_groupBox.TabIndex = 22;
+            this.player1_groupBox.TabStop = false;
+            this.player1_groupBox.Text = "Player 1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(27, 40);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(33, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Spins";
+            // 
+            // player1_spins_textBox
+            // 
+            this.player1_spins_textBox.Location = new System.Drawing.Point(75, 37);
+            this.player1_spins_textBox.Name = "player1_spins_textBox";
+            this.player1_spins_textBox.Size = new System.Drawing.Size(100, 20);
+            this.player1_spins_textBox.TabIndex = 1;
+            // 
+            // player1_cash_textBox
+            // 
+            this.player1_cash_textBox.Location = new System.Drawing.Point(75, 73);
+            this.player1_cash_textBox.Name = "player1_cash_textBox";
+            this.player1_cash_textBox.Size = new System.Drawing.Size(100, 20);
+            this.player1_cash_textBox.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(27, 76);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(31, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Cash";
+            // 
+            // player2_groupBox
+            // 
+            this.player2_groupBox.Controls.Add(this.player2_cash_textBox);
+            this.player2_groupBox.Controls.Add(this.label3);
+            this.player2_groupBox.Controls.Add(this.player2_spins_textBox);
+            this.player2_groupBox.Controls.Add(this.label4);
+            this.player2_groupBox.Location = new System.Drawing.Point(819, 234);
+            this.player2_groupBox.Name = "player2_groupBox";
+            this.player2_groupBox.Size = new System.Drawing.Size(215, 125);
+            this.player2_groupBox.TabIndex = 23;
+            this.player2_groupBox.TabStop = false;
+            this.player2_groupBox.Text = "Player 2";
+            // 
+            // player2_cash_textBox
+            // 
+            this.player2_cash_textBox.Location = new System.Drawing.Point(75, 73);
+            this.player2_cash_textBox.Name = "player2_cash_textBox";
+            this.player2_cash_textBox.Size = new System.Drawing.Size(100, 20);
+            this.player2_cash_textBox.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(27, 76);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(31, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Cash";
+            // 
+            // player2_spins_textBox
+            // 
+            this.player2_spins_textBox.Location = new System.Drawing.Point(75, 37);
+            this.player2_spins_textBox.Name = "player2_spins_textBox";
+            this.player2_spins_textBox.Size = new System.Drawing.Size(100, 20);
+            this.player2_spins_textBox.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(27, 40);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(33, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Spins";
+            // 
             // PressYourLuckGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(789, 467);
+            this.ClientSize = new System.Drawing.Size(1063, 467);
+            this.Controls.Add(this.player2_groupBox);
+            this.Controls.Add(this.player1_groupBox);
             this.Controls.Add(this.startQ);
             this.Controls.Add(this.Spin);
             this.Controls.Add(this.Stop);
@@ -310,6 +414,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BorderBox)).EndInit();
+            this.player1_groupBox.ResumeLayout(false);
+            this.player1_groupBox.PerformLayout();
+            this.player2_groupBox.ResumeLayout(false);
+            this.player2_groupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -338,6 +446,16 @@
         private System.Windows.Forms.Button Stop;
         private System.Windows.Forms.Button Spin;
         private System.Windows.Forms.Button startQ;
+        private System.Windows.Forms.GroupBox player1_groupBox;
+        private System.Windows.Forms.TextBox player1_cash_textBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox player1_spins_textBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox player2_groupBox;
+        private System.Windows.Forms.TextBox player2_cash_textBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox player2_spins_textBox;
+        private System.Windows.Forms.Label label4;
     }
 }
 

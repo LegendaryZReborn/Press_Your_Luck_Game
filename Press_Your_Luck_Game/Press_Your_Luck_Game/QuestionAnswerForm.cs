@@ -16,23 +16,39 @@ namespace Press_Your_Luck_Game
         private string userAns = "";
         private string correctAns = "";
         private const int MAX_QUESTIONS = 100;
+        private int num_questions; //number of questions read from the input file
         private string fileDir = "..\\..\\luckfile.txt";
-        private QAStructure[] qaStructure = new QAStructure[MAX_QUESTIONS];
-        private static int questionCount = 0;
+        private static QAStructure[] qaStructure = new QAStructure[MAX_QUESTIONS];
+        private static int questionCount = 0; //number of questions answered since last startQuestioning call
+        private static int questionIndex = 0; //used to index into question and answers array
+        private int correctAnswers = 0; //number of correct answers since startQuestioning was called
+        private const int MAX_QUESTIONS_ASK = 3; //maximum questions to ask player at a time
+      //  private PressYourLuckGameForm game_user_form;
 
-        public QuestionAnswerForm()
+        public QuestionAnswerForm(/*PressYourLuckGameForm game_form*/)
         {
             InitializeComponent();
+           // game_user_form = game_form;
             submitButton.Enabled = false;
             nextButton.Enabled = false;
             answerBox.ReadOnly = true;
-            readQuestions(fileDir);
+            num_questions = readQuestions(fileDir);
+            if(num_questions < 1)
+            {
+                MessageBox.Show("No Questions and answers in file", "Invalid Input file", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                //somehow disable Question form
+            }
+            else
+            {
+                shuffleQuestions();
+            }
         }
 
 
         //Purpose: reads all questions and answers from file and returns the number of pairs read
         //Requires: none
-        //Returns: number of pars of questions and answers in the file
+        //Returns: number of paIrs of questions and answers in the file
         private int readQuestions(string file)
         {
             StreamReader streamReader;
@@ -56,10 +72,24 @@ namespace Press_Your_Luck_Game
             catch (Exception exception)
             {
                 //notify user that file could not be read
-
+                MessageBox.Show("Error" + exception.Data, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return -1; //exit from program
             }
 
+        }
+
+        public void startQuestioning(string name)
+        {
+            //call show method here
+            this.Text = "Questions for " + name;
+            questionBox.Text = "Press the 'start' button to start answering questions.";
+            answerBox.ReadOnly = true;
+            startButton.Enabled = true;
+            submitButton.Enabled = false;
+            nextButton.Enabled = false;
+            correctAnswers = 0;
+            questionCount = 0;
+            answerBox.Clear();
         }
 
 
@@ -70,9 +100,9 @@ namespace Press_Your_Luck_Game
         {
             startButton.Enabled = false;
             answerBox.ReadOnly = false;
+            nextButton.Text = "Next";
             answerBox.Clear();
             askQuestion();
-
         }
 
         //Purpose: Asks the user a questions 
@@ -80,11 +110,12 @@ namespace Press_Your_Luck_Game
         //Returns: nothing
         private void askQuestion()
         {
-            questionBox.Text = qaStructure[questionCount].Question;
+            questionBox.Text = qaStructure[questionIndex].Question;
             answerBox.ReadOnly = false;
             submitButton.Enabled = true;
+            nextButton.Enabled = false;
         }
-        
+
         //Purpose: Accepts the users input answer and evaluates it.
         //Increments players number of spins if their answer is correct.
         //Requires: object sender, EventArgs
@@ -93,36 +124,29 @@ namespace Press_Your_Luck_Game
         {
             submitButton.Enabled = false;
             userAns = answerBox.Text.ToLower();
-            correctAns = qaStructure[questionCount].Answer.ToLower();
+            correctAns = qaStructure[questionIndex].Answer.ToLower();
 
             if (userAns == correctAns)
             {
                 verdictLabel.ForeColor = Color.Lime;
                 verdictLabel.Text = "CORRECT!";
                 //INCREMENT PLAYER SPINS HERE
-
+                ++correctAnswers;
 
             }
             else
             {
                 verdictLabel.ForeColor = Color.Red;
                 verdictLabel.Text = "WRONG!";
-
             }
 
-            if ((questionCount + 1) % 3 == 0)
+            if (questionCount == MAX_QUESTIONS_ASK - 1)
                 nextButton.Text = "Finish";
 
-            questionCount++;
-
+            questionIndex = (questionIndex + 1) % num_questions;
+            nextButton.Enabled = true;
             //CHANGE THIS LATER; PERHAPS WHEN ALL QUESTIONS RUN OUT THE GAME IS DONE
             //OR PLAYERS CAN PICK NUMBER OF ROUNDS IDK
-            if (questionCount > qaStructure.Length - 1)
-                questionCount = 0;
-            
-           
-            nextButton.Enabled = true;
-
 
         }
 
@@ -135,10 +159,64 @@ namespace Press_Your_Luck_Game
             answerBox.Clear();
             verdictLabel.Text = "";
 
-            if(nextButton.Text != "Finish")
-               askQuestion();
+            if (nextButton.Text != "Finish")
+            {
+                questionIndex = (questionIndex + 1) % num_questions;
+                ++questionCount;
+                if (questionCount == MAX_QUESTIONS_ASK)
+                {
+                    nextButton.Text = "Finish";
+                    submitButton.Enabled = false;
+                }
+                else
+                {
+                    askQuestion();
+                }
+            }
             else
-               this.Close();
+            {
+                setDialogResults();
+                this.Close();
+            }
+        }
+
+        //Purpose: generate MAX_DISPLAY_Q rnadom questions
+        //Requires: none
+        //Returns: none
+        private void shuffleQuestions()
+        {
+            Random rand = new Random();
+            int rand_index;
+            QAStructure temp;
+            for(int i = 0; i < num_questions; i++)
+            {
+                rand_index = rand.Next() % num_questions;
+
+                temp = qaStructure[i];
+                qaStructure[i] = qaStructure[rand_index];
+                qaStructure[rand_index] = temp;
+            }
+            
+        }
+
+        private void QuestionAnswerForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            setDialogResults();
+           // game_user_form.Enabled = true;
+        }
+
+        public int CorrectAnswers
+        {
+            get
+            {
+                return correctAnswers;
+            }
+
+        }
+
+        private void setDialogResults()
+        {
+            this.DialogResult = DialogResult.OK;
         }
     }
 }
