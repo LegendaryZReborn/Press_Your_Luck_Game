@@ -61,6 +61,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.PressYourLuckSpin = new System.Windows.Forms.PictureBox();
             this.currentStatusL = new System.Windows.Forms.Label();
+            this.playOrQuitButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -240,13 +241,13 @@
             // stopButton
             // 
             this.stopButton.BackColor = System.Drawing.Color.DarkRed;
-            this.stopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stopButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.stopButton.Location = new System.Drawing.Point(849, 365);
+            this.stopButton.Location = new System.Drawing.Point(824, 365);
             this.stopButton.Name = "stopButton";
-            this.stopButton.Size = new System.Drawing.Size(166, 98);
+            this.stopButton.Size = new System.Drawing.Size(103, 98);
             this.stopButton.TabIndex = 19;
-            this.stopButton.Text = "STOP";
+            this.stopButton.Text = "Stop Spin";
             this.stopButton.UseVisualStyleBackColor = false;
             this.stopButton.Click += new System.EventHandler(this.Stop_Click);
             // 
@@ -267,6 +268,7 @@
             // 
             this.player1_cash_textBox.Location = new System.Drawing.Point(75, 73);
             this.player1_cash_textBox.Name = "player1_cash_textBox";
+            this.player1_cash_textBox.ReadOnly = true;
             this.player1_cash_textBox.Size = new System.Drawing.Size(100, 20);
             this.player1_cash_textBox.TabIndex = 3;
             // 
@@ -283,6 +285,7 @@
             // 
             this.player1_spins_textBox.Location = new System.Drawing.Point(75, 37);
             this.player1_spins_textBox.Name = "player1_spins_textBox";
+            this.player1_spins_textBox.ReadOnly = true;
             this.player1_spins_textBox.Size = new System.Drawing.Size(100, 20);
             this.player1_spins_textBox.TabIndex = 1;
             // 
@@ -312,6 +315,7 @@
             // 
             this.player2_cash_textBox.Location = new System.Drawing.Point(75, 73);
             this.player2_cash_textBox.Name = "player2_cash_textBox";
+            this.player2_cash_textBox.ReadOnly = true;
             this.player2_cash_textBox.Size = new System.Drawing.Size(100, 20);
             this.player2_cash_textBox.TabIndex = 3;
             // 
@@ -328,6 +332,7 @@
             // 
             this.player2_spins_textBox.Location = new System.Drawing.Point(75, 37);
             this.player2_spins_textBox.Name = "player2_spins_textBox";
+            this.player2_spins_textBox.ReadOnly = true;
             this.player2_spins_textBox.Size = new System.Drawing.Size(100, 20);
             this.player2_spins_textBox.TabIndex = 1;
             // 
@@ -360,12 +365,26 @@
             this.currentStatusL.Size = new System.Drawing.Size(0, 25);
             this.currentStatusL.TabIndex = 25;
             // 
+            // playOrQuitButton
+            // 
+            this.playOrQuitButton.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.playOrQuitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playOrQuitButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.playOrQuitButton.Location = new System.Drawing.Point(933, 365);
+            this.playOrQuitButton.Name = "playOrQuitButton";
+            this.playOrQuitButton.Size = new System.Drawing.Size(103, 98);
+            this.playOrQuitButton.TabIndex = 26;
+            this.playOrQuitButton.Text = "Play";
+            this.playOrQuitButton.UseVisualStyleBackColor = false;
+            this.playOrQuitButton.Click += new System.EventHandler(this.playOrQuitButton_Click);
+            // 
             // PressYourLuckGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(1063, 467);
+            this.ClientSize = new System.Drawing.Size(1072, 467);
+            this.Controls.Add(this.playOrQuitButton);
             this.Controls.Add(this.currentStatusL);
             this.Controls.Add(this.PressYourLuckSpin);
             this.Controls.Add(this.player2_groupBox);
@@ -455,6 +474,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox PressYourLuckSpin;
         private System.Windows.Forms.Label currentStatusL;
+        private System.Windows.Forms.Button playOrQuitButton;
     }
 }
 

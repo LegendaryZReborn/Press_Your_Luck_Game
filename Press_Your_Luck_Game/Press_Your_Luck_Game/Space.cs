@@ -12,7 +12,7 @@ namespace Press_Your_Luck_Game
     class Space
     {
         private PictureBox spacePBox;
-        private const int numEvents = 4;
+        private const int numEvents = 5;
         private String[] spaceEvents = new String[numEvents];
         private String sEvent;
         private int eventVal;

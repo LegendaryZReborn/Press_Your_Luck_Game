@@ -18,6 +18,7 @@ namespace Press_Your_Luck_Game
         public PlayersNamesForm()
         {
             InitializeComponent();
+            this.ControlBox = false;
         }
 
         public void getPlayersNames(ref String name1, ref String name2)
