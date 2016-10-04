@@ -68,8 +68,8 @@ namespace Press_Your_Luck_Game
             }
 
             initTimers();
-            initPlayers();
-            startRound();
+            PressYourLuckSpin.Enabled = false;
+            stopButton.Enabled = false;
         }
 
        
@@ -142,8 +142,6 @@ namespace Press_Your_Luck_Game
                     currentStatusL.Text = player2.Name + "'s Spin";
                 }
 
-               
-
                 if (endRound)
                 {
                     roundNum++;
@@ -177,19 +175,62 @@ namespace Press_Your_Luck_Game
 
         }
 
+        //Purpose: Starts or quits the game
+        //Requires: object sender, EventArgs e
+        //Returns: nothing
+        private void playOrQuitButton_Click(object sender, EventArgs e)
+        {
+            if (playOrQuitButton.Text == "Play")
+            {
+                playOrQuitButton.Text = "Quit Game";
+                PressYourLuckSpin.Enabled = true;
+                initPlayers();
+                startRound();
+            }
+            else
+            {
+                this.Close();
+            }
+        }
 
+
+        //Purpose: Updates all players cash information on the form
+        //Requires: nothing
+        //Returns: nothing
+        private void updatePlayersCashInfo()
+        {
+            player1_cash_textBox.Text = "$" + player1.Cash.ToString();
+            player2_cash_textBox.Text = "$" + player2.Cash.ToString();
+        }
+
+        //Purpose: Updates all players spins information on the form
+        //Requires: nothing
+        //Returns: nothing
+        private void updatePlayersSpinInfo()
+        {
+            player1_spins_textBox.Text = player1.Spins.ToString();
+            player2_spins_textBox.Text = player2.Spins.ToString();
+        }
+
+        //Purpose: Call a function to ask all players questions
+        // and record their spins 
+        //Requires: nothing
+        //Returns: nothing
         private void questionPlayers()
         {
             //here assign number of spins returned from question form to a variable
             getPlayerSpins(player1);
             getPlayerSpins(player2);
 
-            player1_spins_textBox.Text = player1.Spins.ToString();
-            player2_spins_textBox.Text = player2.Spins.ToString();
+            updatePlayersSpinInfo();
             //maybe we want to deactivate start question button here until users have done used their spins
 
         }
 
+        //Purpose: Ask a player some questions and award him/her spins
+        //for each correct answer
+        //Requires: Player player
+        //Returns: nothing
         private void getPlayerSpins(Player player)
         {
             qAForm.startQuestioning(player.Name);
@@ -197,8 +238,7 @@ namespace Press_Your_Luck_Game
             player.Spins += qAForm.CorrectAnswers;
         }
 
-
-     
+      
 
         private void initPlayers()
         {
@@ -211,10 +251,8 @@ namespace Press_Your_Luck_Game
             player2.Name = name2;
             player1_groupBox.Text = player1.Name;
             player2_groupBox.Text = player2.Name;
-            player1_cash_textBox.Text = "$" + player1.Cash.ToString();
-            player2_cash_textBox.Text = "$" + player2.Cash.ToString();
-            player1_spins_textBox.Text = player1.Spins.ToString();
-            player2_spins_textBox.Text = player2.Spins.ToString();
+            updatePlayersCashInfo();
+            updatePlayersSpinInfo();
         }
 
         //Purpose: Allows a player reap the benefits or
@@ -255,8 +293,7 @@ namespace Press_Your_Luck_Game
                 playerN.Cash += sEvent.Value;
             }
 
-            player1_cash_textBox.Text = "$" + player1.Cash.ToString();
-            player2_cash_textBox.Text = "$" + player2.Cash.ToString();
+            updatePlayersCashInfo();
 
 
         }
@@ -288,8 +325,7 @@ namespace Press_Your_Luck_Game
                 {
                     player1.Spins = 1;
                     player2.Spins = 1;
-                    player1_spins_textBox.Text = player1.Spins.ToString();
-                    player2_spins_textBox.Text = player2.Spins.ToString();
+                    updatePlayersSpinInfo();
                 }
 
                 //set who's turn to spin
@@ -308,7 +344,7 @@ namespace Press_Your_Luck_Game
 
             }
             else
-            {
+            { 
                 if (player1.Cash != player2.Cash)
                 {
                     currentStatusL.Text = player1.Cash > player2.Cash ? player1.Name : player2.Name;
@@ -321,6 +357,7 @@ namespace Press_Your_Luck_Game
 
                 PressYourLuckSpin.Enabled = false;
                 stopButton.Enabled = false;
+                
             }
         }
     }

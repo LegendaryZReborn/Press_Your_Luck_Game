@@ -28,7 +28,8 @@ namespace Press_Your_Luck_Game
         public QuestionAnswerForm(/*PressYourLuckGameForm game_form*/)
         {
             InitializeComponent();
-           // game_user_form = game_form;
+            this.ControlBox = false;
+            // game_user_form = game_form;
             submitButton.Enabled = false;
             nextButton.Enabled = false;
             answerBox.ReadOnly = true;
