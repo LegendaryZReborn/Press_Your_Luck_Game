@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Timers;
-
+using System.Media;
 
 namespace Press_Your_Luck_Game
 {
@@ -70,9 +70,17 @@ namespace Press_Your_Luck_Game
             initTimers();
             PressYourLuckSpin.Enabled = false;
             stopButton.Enabled = false;
+
+            playSimpleSound();
+
         }
 
-       
+        private void playSimpleSound()
+        {
+            SoundPlayer simpleSound = new SoundPlayer("..\\..\\Music\\naruto_original.wav");
+            simpleSound.Play();
+        }
+
 
         //Purpose: Initializes the two timers required to spin and stop the BorderBox
         //Requires: nothing
