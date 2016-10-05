@@ -22,7 +22,7 @@ namespace Press_Your_Luck_Game
         private String boxname = "pictureBox";
         private String boxnames = "";
         private int borderCounter = 0;
-        private int roundNum = 1;
+        private int roundNum;
         private int maxRounds = 2;
         private System.Windows.Forms.Timer reassignTimer;
         private System.Windows.Forms.Timer easeTimer;
@@ -45,9 +45,7 @@ namespace Press_Your_Luck_Game
             BorderBox.BackColor = Color.Transparent;
             BorderBox.Parent = pictureBox1;
             BorderBox.Location = new Point(0, 0);
-            BorderBox.Image = Image.FromFile("..\\..\\Images\\Misc\\Border.gif");
-            BorderBox.Visible = false;
-          
+            BorderBox.Image = Image.FromFile("..\\..\\Images\\Misc\\Border.gif");          
             
             //Assigns each picture box excluding the BorderBox and PressYourLuckSpin
             //to an array. Basically this is the array of picture boxes that will 
@@ -67,18 +65,46 @@ namespace Press_Your_Luck_Game
                 boardSpaces[i] = new Space(pictureBoxes[i]);
             }
 
-            initTimers();
-            PressYourLuckSpin.Enabled = false;
+            playOrQuitButton.Text = "Play";
+            BorderBox.Visible = false;
             stopButton.Enabled = false;
-
+            PressYourLuckSpin.Enabled = false;
+            initTimers();
             playSimpleSound();
 
         }
 
+        //Purpose: Starts game background sound
+        //Requires: nothing
+        //Returns: nothing
         private void playSimpleSound()
         {
             SoundPlayer simpleSound = new SoundPlayer("..\\..\\Music\\naruto_original.wav");
-            simpleSound.Play();
+            simpleSound.PlayLooping();
+           // simpleSound.Play();
+            
+
+        }
+
+        //Purpose: Initializes the all the variables needed to be 
+        //initialized at the start 
+        //Requires: nothing
+        //Returns: nothing
+        private void initGame()
+        {
+            roundNum = 1;
+            PressYourLuckSpin.Enabled = false;
+            stopButton.Enabled = false;
+            currentStatusL.Text = "";
+            player1.Cash = 0;
+            player2.Cash = 0;
+            player1.Spins = 0;
+            player2.Spins = 0;
+            updatePlayersCashInfo();
+            updatePlayersSpinInfo();
+            playOrQuitButton.Text = "Play";
+            BorderBox.Visible = false;
+
         }
 
 
@@ -190,10 +216,11 @@ namespace Press_Your_Luck_Game
         {
             if (playOrQuitButton.Text == "Play")
             {
-                playOrQuitButton.Text = "Quit Game";
-                PressYourLuckSpin.Enabled = true;
+                initGame();
                 initPlayers();
                 startRound();
+                playOrQuitButton.Text = "Quit Game";
+                PressYourLuckSpin.Enabled = true;
             }
             else
             {
@@ -306,6 +333,22 @@ namespace Press_Your_Luck_Game
 
         }
 
+        //Purpose: Ask the players if they want to play again
+        //Requires: nothing
+        //Returns: nothing
+        private void playAgain()
+        {
+            DialogResult dialogResult = MessageBox.Show("Do you want to play again?", "Play Again", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                initGame();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                this.Close();
+            }
+        }
+
         //Purpose: Starts a round in the game itself
         //Requires: nothing
         //Returns: nothing
@@ -316,7 +359,7 @@ namespace Press_Your_Luck_Game
 
             if (roundNum <= maxRounds)
             {
-                
+                currentStatusL.Text = "Round " + roundNum;
                 questionPlayers();
 
                 //randomize each space
@@ -365,6 +408,7 @@ namespace Press_Your_Luck_Game
 
                 PressYourLuckSpin.Enabled = false;
                 stopButton.Enabled = false;
+                playAgain();
                 
             }
         }
