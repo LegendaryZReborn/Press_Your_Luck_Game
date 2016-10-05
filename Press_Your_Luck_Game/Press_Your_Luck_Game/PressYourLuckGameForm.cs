@@ -77,7 +77,7 @@ namespace Press_Your_Luck_Game
 
         private void playSimpleSound()
         {
-            SoundPlayer simpleSound = new SoundPlayer("..\\..\\Music\\naruto_original.wav");
+            SoundPlayer simpleSound = new SoundPlayer("..\\..\\Music\\ns_vs_momo.wav");
             simpleSound.Play();
         }
 
