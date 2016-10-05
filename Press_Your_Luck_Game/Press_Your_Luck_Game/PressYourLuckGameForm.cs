@@ -23,14 +23,17 @@ namespace Press_Your_Luck_Game
         private String boxnames = "";
         private int borderCounter = 0;
         private int roundNum;
-        private int maxRounds = 2;
+        private const int MAX_ROUNDS = 2;
         private System.Windows.Forms.Timer reassignTimer;
         private System.Windows.Forms.Timer easeTimer;
         private QuestionAnswerForm qAForm;
         private Player player1 = new Player(), player2 = new Player(), whoseTurn;
         private PlayersNamesForm playersNamesForm = new PlayersNamesForm();
         private bool endRound = false, found = false;
-       
+        private const string SPIN_MUSIC = "..\\..\\Music\\naruto_5ths_fight.wav";
+        private const string GAME_MUSIC = "..\\..\\Music\\one_punch.wav";
+        private SoundPlayer spin_sound_player = new SoundPlayer(SPIN_MUSIC);
+        private SoundPlayer game_sound_player = new SoundPlayer(GAME_MUSIC);
 
         public PressYourLuckGameForm()
         {
@@ -70,23 +73,7 @@ namespace Press_Your_Luck_Game
             stopButton.Enabled = false;
             PressYourLuckSpin.Enabled = false;
             initTimers();
-            playSimpleSound();
-
-        }
-
-        //Purpose: Starts game background sound
-        //Requires: nothing
-        //Returns: nothing
-        private void playSimpleSound()
-        {
-<<<<<<< HEAD
-            SoundPlayer simpleSound = new SoundPlayer("..\\..\\Music\\ns_vs_momo.wav");
-            simpleSound.Play();
-=======
-            SoundPlayer simpleSound = new SoundPlayer("..\\..\\Music\\naruto_original.wav");
-            simpleSound.PlayLooping();
-           // simpleSound.Play();
-            
+            game_sound_player.PlayLooping(); //start music
 
         }
 
@@ -108,8 +95,6 @@ namespace Press_Your_Luck_Game
             updatePlayersSpinInfo();
             playOrQuitButton.Text = "Play";
             BorderBox.Visible = false;
-
->>>>>>> 01b4ed13badccfc50eac47420ded64e3aae06a47
         }
 
 
@@ -263,8 +248,10 @@ namespace Press_Your_Luck_Game
             getPlayerSpins(player2);
 
             updatePlayersSpinInfo();
-            //maybe we want to deactivate start question button here until users have done used their spins
 
+            //stop general game music and begin spin music
+            //game_sound_player.Stop();
+            //spin_sound_player.PlayLooping();
         }
 
         //Purpose: Ask a player some questions and award him/her spins
@@ -347,6 +334,8 @@ namespace Press_Your_Luck_Game
             if (dialogResult == DialogResult.Yes)
             {
                 initGame();
+                spin_sound_player.Stop();
+                game_sound_player.PlayLooping();
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -362,13 +351,20 @@ namespace Press_Your_Luck_Game
             if (!this.Visible)
                 this.Show();
 
-            if (roundNum <= maxRounds)
+            if (roundNum <= MAX_ROUNDS)
             {
                 currentStatusL.Text = "Round " + roundNum;
+                
+                //start general game music
+                game_sound_player.PlayLooping();
+
                 questionPlayers();
 
+                //start spin music
+                spin_sound_player.PlayLooping();
+
                 //randomize each space
-                for (int r = 0; r < 18; r++)
+                for (int r = 0; r < NUM_SPACES; r++)
                 {
                     boardSpaces[r].randomizeSpace();
                 }
