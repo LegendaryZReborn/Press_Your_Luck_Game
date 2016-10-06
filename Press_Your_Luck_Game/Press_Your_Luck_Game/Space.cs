@@ -1,4 +1,15 @@
-﻿using System;
+﻿/*
+QuestionAnswerForm.cs
+By Anthony Enem and Cavaughn Browne
+CMPS 4143: Contemporary programming Languages
+10/06/2016
+
+This class defines a single gameboard space. It holds the data for the space
+(what kind of space it is and the value associated with it) and this data is
+also determined randomly.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +31,8 @@ namespace Press_Your_Luck_Game
         static private Random r = new Random();
 
         //Parameterized Constructor. Must give it a picture Box.
+        //Requires: PictureBox p
+        //Returns: nothing
         public Space(PictureBox p)
         {
             sEvent = "";
@@ -35,7 +48,9 @@ namespace Press_Your_Luck_Game
 
         }
 
-        //Randomizes the spaces event
+        //Purpose:Randomizes the spaces event
+        //Requires: nothing
+        //Returns: nothing
         public void randomizeSpace()
         {
             String dir = "..\\..\\Images";
@@ -70,6 +85,7 @@ namespace Press_Your_Luck_Game
 
         }
 
+        //Property for eveNVal which holds an event and a value
         public KeyValuePair<string, int> EventNVal
         {
             get

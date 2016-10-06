@@ -51,9 +51,9 @@ namespace Press_Your_Luck_Game
             num_questions = readQuestions(fileDir);
             if(num_questions < 1)
             {
-                MessageBox.Show("No Questions and answers in file", "Invalid Input file", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                //somehow disable Question form
+                MessageBox.Show("No Questions and answers in file", 
+                    "Invalid Input file", MessageBoxButtons.OK,
+                    MessageBoxIcon.Stop);
             }
             else
             {
@@ -63,7 +63,8 @@ namespace Press_Your_Luck_Game
         }
 
 
-        //Purpose: reads all questions and answers from file and returns the number of pairs read
+        //Purpose: reads all questions and answers from file and 
+        //returns the number of pairs read
         //Requires: none
         //Returns: number of paIrs of questions and answers in the file
         private int readQuestions(string file)
@@ -91,7 +92,8 @@ namespace Press_Your_Luck_Game
             catch (Exception exception)
             {
                 //notify user that file could not be read
-                MessageBox.Show("Error" + exception.Data, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error" + exception.Data, "Error!", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return -1; //exit from program
             }
 
@@ -104,7 +106,8 @@ namespace Press_Your_Luck_Game
         {
             //call show method here
             this.Text = "Questions for " + name;
-            questionBox.Text = "Press the 'start' button to start answering questions.";
+            questionBox.Text = 
+                "Press the 'start' button to start answering questions.";
             answerBox.ReadOnly = true;
             startButton.Enabled = true;
             submitButton.Enabled = false;
@@ -167,8 +170,7 @@ namespace Press_Your_Luck_Game
 
             questionIndex = (questionIndex + 1) % num_questions;
             nextButton.Enabled = true;
-            //CHANGE THIS LATER; PERHAPS WHEN ALL QUESTIONS RUN OUT THE GAME IS DONE
-            //OR PLAYERS CAN PICK NUMBER OF ROUNDS IDK
+          
 
         }
 
