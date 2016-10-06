@@ -79,12 +79,12 @@ namespace Press_Your_Luck_Game
                 //read all questions and answers and keep track of number read
                 do    
                 {
-                    ++count;
                     qaStructure[count] = new QAStructure();
                     qaStructure[count].Question = streamReader.ReadLine();
                     qaStructure[count].Answer = streamReader.ReadLine();
+                    count++;
 
-                }while(!streamReader.EndOfStream && count < MAX_QUESTIONS);
+                } while(!streamReader.EndOfStream && count < MAX_QUESTIONS);
 
                 //return count of pairs of questions and answers
                 return count;
