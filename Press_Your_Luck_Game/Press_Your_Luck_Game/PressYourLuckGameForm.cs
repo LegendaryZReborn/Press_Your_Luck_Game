@@ -165,7 +165,7 @@ namespace Press_Your_Luck_Game
                 {
                     endRound = true;
                 }
-                else
+                else if(whoseTurn.Spins == 0)
                 {
                     //change to the next player
                     whoseTurn = whoseTurn == player1 ? player2 : player1;
