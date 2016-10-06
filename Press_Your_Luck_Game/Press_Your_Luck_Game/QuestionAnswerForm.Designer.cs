@@ -110,7 +110,6 @@
             this.Controls.Add(this.answerBox);
             this.Name = "QuestionAnswerForm";
             this.Text = "QuestionAnswerForm";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.QuestionAnswerForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
