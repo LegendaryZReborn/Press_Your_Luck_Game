@@ -23,7 +23,6 @@ namespace Press_Your_Luck_Game
         private static int questionIndex = 0; //used to index into question and answers array
         private int correctAnswers = 0; //number of correct answers since startQuestioning was called
         private const int MAX_QUESTIONS_ASK = 3; //maximum questions to ask player at a time
-      //  private PressYourLuckGameForm game_user_form;
 
         public QuestionAnswerForm(/*PressYourLuckGameForm game_form*/)
         {
@@ -58,14 +57,16 @@ namespace Press_Your_Luck_Game
             try
             {
                 streamReader = new StreamReader(file);
-                int count;
+                int count = 0;
                 //read all questions and answers and keep track of number read
-                for (count = 0; !streamReader.EndOfStream && count < MAX_QUESTIONS; ++count)
+                do    
                 {
+                    ++count;
                     qaStructure[count] = new QAStructure();
                     qaStructure[count].Question = streamReader.ReadLine();
                     qaStructure[count].Answer = streamReader.ReadLine();
-                }
+
+                }while(!streamReader.EndOfStream && count < MAX_QUESTIONS);
 
                 //return count of pairs of questions and answers
                 return count;
@@ -203,7 +204,6 @@ namespace Press_Your_Luck_Game
         private void QuestionAnswerForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             setDialogResults();
-           // game_user_form.Enabled = true;
         }
 
         public int CorrectAnswers
