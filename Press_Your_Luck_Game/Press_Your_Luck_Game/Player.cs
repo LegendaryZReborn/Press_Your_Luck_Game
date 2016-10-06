@@ -1,5 +1,12 @@
-﻿//Player.cs file
-//Player class to hold information about player
+﻿/*
+Player.cs
+By Anthony Enem and Cavaughn Browne
+CMPS 4143: Contemporary programming Languages
+10/06/2016
+
+This class maintains data for each player such as number of spins, name
+and cash money.
+*/
 
 using System;
 using System.Collections.Generic;
@@ -11,16 +18,20 @@ namespace Press_Your_Luck_Game
 {
     class Player
     {
+        //private data
         private int cash;
         private int spins;
         private string name;
 
+        //constructor
         public Player()
         {
             cash = 0;
             spins = 0;
+            name = "";
         }
 
+        //Spins property for number of spins
         public int Spins
         {
             //returns the value of spins
@@ -36,6 +47,7 @@ namespace Press_Your_Luck_Game
             }
         }
 
+        //Cash specifies get and set property for cash
         public int Cash
         {
             //returns the value of cash
@@ -51,14 +63,17 @@ namespace Press_Your_Luck_Game
             }
         }
 
+        //Name specifies get and set property for name
         public string Name
         {
             get
             {
+                //return name value
                 return name;
             }
             set
             {
+                //set this name to value passed in
                 this.name = value;
             }
         }

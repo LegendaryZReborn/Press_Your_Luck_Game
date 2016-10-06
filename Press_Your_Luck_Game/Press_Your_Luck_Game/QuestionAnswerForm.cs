@@ -1,4 +1,15 @@
-﻿using System;
+﻿/*
+QuestionAnswerForm.cs
+By Anthony Enem and Cavaughn Browne
+CMPS 4143: Contemporary programming Languages
+10/06/2016
+
+This forms handles the questioning of a user. A file containing questions and answers
+is first read in and shuffled, then on calling the startQuestioning method, the form
+resets to begin questioning for a player.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -41,6 +52,7 @@ namespace Press_Your_Luck_Game
             }
             else
             {
+                //shuffle questions to make them random
                 shuffleQuestions();
             }
         }
@@ -80,6 +92,9 @@ namespace Press_Your_Luck_Game
 
         }
 
+        //Purpose: resets form to begin questioning player
+        //Requires: none
+        //Returns: none
         public void startQuestioning(string name)
         {
             //call show method here
@@ -152,8 +167,7 @@ namespace Press_Your_Luck_Game
 
         }
 
-        //Purpose: Clears the answer and verdict boxes; calls the 
-        //askQuestion function
+        //Purpose: handles event when next button is clicked
         //Requires: object sender, EventArgs
         //Returns: nothing
         private void nextButton_Click(object sender, EventArgs e)
@@ -161,39 +175,51 @@ namespace Press_Your_Luck_Game
             answerBox.Clear();
             verdictLabel.Text = "";
 
+            //if text for next button is not finish
             if (nextButton.Text != "Finish")
             {
+                //advance to next question index and question count
                 questionIndex = (questionIndex + 1) % num_questions;
                 ++questionCount;
+
+                //check if qwe have asked the maximum questions allowed
                 if (questionCount == MAX_QUESTIONS_ASK)
                 {
+                    //Done asking questions if maximum number is reached
                     nextButton.Text = "Finish";
                     submitButton.Enabled = false;
                 }
                 else
                 {
+                    //else continue asking questions
                     askQuestion();
                 }
             }
             else
             {
-                setDialogResults();
+                //if next button is finish, close form
                 this.Close();
             }
         }
 
-        //Purpose: generate MAX_DISPLAY_Q rnadom questions
+        //Purpose: shuffles the questions read from file
         //Requires: none
         //Returns: none
         private void shuffleQuestions()
         {
+            //instantiate random object
             Random rand = new Random();
             int rand_index;
+
             QAStructure temp;
+
+            //loop through number of questions in file
             for(int i = 0; i < num_questions; i++)
             {
+                //get a valid random index
                 rand_index = rand.Next() % num_questions;
 
+                //swap question in current index with question in random index
                 temp = qaStructure[i];
                 qaStructure[i] = qaStructure[rand_index];
                 qaStructure[rand_index] = temp;
@@ -201,11 +227,8 @@ namespace Press_Your_Luck_Game
             
         }
 
-        private void QuestionAnswerForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            setDialogResults();
-        }
-
+        //get property CorrectAnswers
+        //Returns: number of correct answers by player so far
         public int CorrectAnswers
         {
             get
@@ -215,9 +238,6 @@ namespace Press_Your_Luck_Game
 
         }
 
-        private void setDialogResults()
-        {
-            this.DialogResult = DialogResult.OK;
-        }
+       
     }
 }

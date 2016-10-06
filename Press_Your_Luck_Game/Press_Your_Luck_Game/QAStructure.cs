@@ -1,5 +1,11 @@
-﻿//QAStructure.cs file
-//Class for Question and answer
+﻿/*
+QAStructure.cs
+By Anthony Enem and Cavaughn Browne
+CMPS 4143: Contemporary programming Languages
+10/06/2016
+
+This class maintains data for a question and its corresponding answer.
+*/
 
 using System;
 using System.Collections.Generic;
@@ -29,7 +35,7 @@ namespace Press_Your_Luck_Game
             this.answer = answer;
         }
 
-        //Purpose: specifies get and get properties for question data
+        //specifies get and get properties for question data
         public String Question
         {
             get
@@ -42,7 +48,7 @@ namespace Press_Your_Luck_Game
             }
         }
 
-        //Purpose: specifies get and get properties for answer data
+        //specifies get and get properties for answer data
         public String Answer
         {
             get

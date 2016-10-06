@@ -1,4 +1,24 @@
-﻿using System;
+﻿/*
+PressYourLuckForm.cs
+By Anthony Enem and Cavaughn Browne
+CMPS 4143: Contemporary programming Languages
+10/06/2016
+
+This form implements a PressYourLuck game for 2 players. They have to answer 3
+questions correctly and get spins to get cash prizes or get their money stolen
+by whammies. The program uses different music for the general game, the spin
+phase and the win phase. 18 spaces are created and randomly assigned cash or
+whammy values in the form. A display board is made for each user on the same
+form for each user with their number of spins and current cash value. A general
+display board is at the top right corner to display whose turn it is to play.
+Players enter their names at the start of the game and the names are used to
+direct the game flow for the players. A QuestionAnswerForm takes care of 
+questioning the players and validating their answers. The player with the most
+cash at the end of 2 rounds win.
+
+*/
+
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
