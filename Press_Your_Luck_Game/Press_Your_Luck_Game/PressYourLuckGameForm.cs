@@ -32,8 +32,10 @@ namespace Press_Your_Luck_Game
         private bool endRound = false, found = false;
         private const string SPIN_MUSIC = "..\\..\\Music\\naruto_5ths_fight.wav";
         private const string GAME_MUSIC = "..\\..\\Music\\one_punch.wav";
+        private const string WIN_MUSIC = "..\\..\\Music\\Dragon Ball Super OST - Turning the Tables.wav";
         private SoundPlayer spin_sound_player = new SoundPlayer(SPIN_MUSIC);
         private SoundPlayer game_sound_player = new SoundPlayer(GAME_MUSIC);
+        private SoundPlayer win_sound_player = new SoundPlayer(WIN_MUSIC);
         private const string BORDER_FILE_NAME = "..\\..\\Images\\Misc\\Border.gif";
 
         public PressYourLuckGameForm()
@@ -430,6 +432,7 @@ namespace Press_Your_Luck_Game
                 {
                     currentStatusL.Text = player1.Cash > player2.Cash ? player1.Name : player2.Name;
                     currentStatusL.Text += " Wins";
+                    win_sound_player.PlayLooping();
                 }
                 else
                 {
