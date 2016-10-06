@@ -34,6 +34,7 @@ namespace Press_Your_Luck_Game
         private const string GAME_MUSIC = "..\\..\\Music\\one_punch.wav";
         private SoundPlayer spin_sound_player = new SoundPlayer(SPIN_MUSIC);
         private SoundPlayer game_sound_player = new SoundPlayer(GAME_MUSIC);
+        private const string BORDER_FILE_NAME = "..\\..\\Images\\Misc\\Border.gif";
 
         public PressYourLuckGameForm()
         {
@@ -48,12 +49,12 @@ namespace Press_Your_Luck_Game
             BorderBox.BackColor = Color.Transparent;
             BorderBox.Parent = pictureBox1;
             BorderBox.Location = new Point(0, 0);
-            BorderBox.Image = Image.FromFile("..\\..\\Images\\Misc\\Border.gif");          
+            BorderBox.Image = Image.FromFile(BORDER_FILE_NAME);          
             
             //Assigns each picture box excluding the BorderBox and PressYourLuckSpin
             //to an array. Basically this is the array of picture boxes that will 
             //become game spaces.
-            for (int i = 0; i < NUM_SPACES; i++)
+            for (int i = 0; i < pictureBoxes.Length; i++)
             {
                 boxnames = boxname + (i + 1);
                 pictureBoxes[i] = this.Controls.Find(boxnames, true).FirstOrDefault() as PictureBox;
@@ -63,7 +64,7 @@ namespace Press_Your_Luck_Game
 
             //create an array of space objects and assign to each picture box
             //around the board a space
-            for (int i = 0; i < NUM_SPACES; i++)
+            for (int i = 0; i < boardSpaces.Length; i++)
             {
                 boardSpaces[i] = new Space(pictureBoxes[i]);
             }
@@ -72,6 +73,7 @@ namespace Press_Your_Luck_Game
             BorderBox.Visible = false;
             stopButton.Enabled = false;
             PressYourLuckSpin.Enabled = false;
+            passSpinsButton.Enabled = false;
             initTimers();
             game_sound_player.PlayLooping(); //start music
 
@@ -86,6 +88,7 @@ namespace Press_Your_Luck_Game
             roundNum = 1;
             PressYourLuckSpin.Enabled = false;
             stopButton.Enabled = false;
+            passSpinsButton.Enabled = false;
             currentStatusL.Text = "";
             player1.Cash = 0;
             player2.Cash = 0;
@@ -146,24 +149,28 @@ namespace Press_Your_Luck_Game
                 reassignTimer.Stop();
                 easeTimer.Stop();
                 reapSpin(whoseTurn);
+
+                //decrement current player's spins
                 whoseTurn.Spins -= 1;
+                passSpinsButton.Enabled = true;
                 stopButton.Enabled = false;
 
+                //reset textboxes for players' spins
                 if (whoseTurn == player1)
                     player1_spins_textBox.Text = player1.Spins.ToString();
                 else
                     player2_spins_textBox.Text = player2.Spins.ToString();
 
-                if (whoseTurn.Spins == 0 && whoseTurn == player2)
+                if (player1.Spins == 0 && player2.Spins == 0)
                 {
                     endRound = true;
-                   
                 }
-
-                if (whoseTurn.Spins == 0 && !endRound)
+                else
                 {
-                    whoseTurn = player2;
-                    currentStatusL.Text = player2.Name + "'s Spin";
+                    //change to the next player
+                    whoseTurn = whoseTurn == player1 ? player2 : player1;
+                    currentStatusL.Text = whoseTurn.Name + "'s Spin";
+
                 }
 
                 if (endRound)
@@ -186,6 +193,7 @@ namespace Press_Your_Luck_Game
                 reassignTimer.Interval = 10; // in reassignTimer = new System.Windows.Forms.Timer();
                 reassignTimer.Start();
                 stopButton.Enabled = true;
+                passSpinsButton.Enabled = false;
             }
         }
 
@@ -195,8 +203,6 @@ namespace Press_Your_Luck_Game
         private void Stop_Click(object sender, EventArgs e)
         {
             easeTimer.Start();
-        
-
         }
 
         //Purpose: Starts or quits the game
@@ -217,7 +223,6 @@ namespace Press_Your_Luck_Game
                 this.Close();
             }
         }
-
 
         //Purpose: Updates all players cash information on the form
         //Requires: nothing
@@ -243,15 +248,10 @@ namespace Press_Your_Luck_Game
         //Returns: nothing
         private void questionPlayers()
         {
-            //here assign number of spins returned from question form to a variable
             getPlayerSpins(player1);
             getPlayerSpins(player2);
 
             updatePlayersSpinInfo();
-
-            //stop general game music and begin spin music
-            //game_sound_player.Stop();
-            //spin_sound_player.PlayLooping();
         }
 
         //Purpose: Ask a player some questions and award him/her spins
@@ -264,9 +264,10 @@ namespace Press_Your_Luck_Game
             qAForm.ShowDialog(this);
             player.Spins += qAForm.CorrectAnswers;
         }
-
-      
-
+        
+        //Purpose: initializes players' names, cash and spins
+        //Requires: none
+        //Returns: none
         private void initPlayers()
         {
             //Get players' names
@@ -279,6 +280,34 @@ namespace Press_Your_Luck_Game
             player1_groupBox.Text = player1.Name;
             player2_groupBox.Text = player2.Name;
             updatePlayersCashInfo();
+            updatePlayersSpinInfo();
+        }
+
+        //Purpose: pass spins from p1 to p2
+        //Requires: Player objects p1 and p2
+        //Returns: none
+        void passSpins(Player p1, Player p2)
+        {
+            p2.Spins += p1.Spins;
+            p1.Spins = 0;
+            whoseTurn = p2;
+            currentStatusL.Text = p2.Name + "'s Spin";
+        }
+
+        //Purpose: passes spins between players when button is clicked
+        //Requires: object sender and EventArgs
+        //Returns: none
+        private void passSpinsButton_Click(object sender, EventArgs e)
+        {
+            if (whoseTurn == player1)
+            {
+                passSpins(player1, player2);
+            }
+            else
+            {
+                passSpins(player2, player1);
+            }
+
             updatePlayersSpinInfo();
         }
 
@@ -321,8 +350,6 @@ namespace Press_Your_Luck_Game
             }
 
             updatePlayersCashInfo();
-
-
         }
 
         //Purpose: Ask the players if they want to play again
@@ -351,8 +378,10 @@ namespace Press_Your_Luck_Game
             if (!this.Visible)
                 this.Show();
 
+
             if (roundNum <= MAX_ROUNDS)
             {
+                passSpinsButton.Enabled = true;
                 currentStatusL.Text = "Round " + roundNum;
                 
                 //start general game music
@@ -364,7 +393,7 @@ namespace Press_Your_Luck_Game
                 spin_sound_player.PlayLooping();
 
                 //randomize each space
-                for (int r = 0; r < NUM_SPACES; r++)
+                for (int r = 0; r < boardSpaces.Length; r++)
                 {
                     boardSpaces[r].randomizeSpace();
                 }

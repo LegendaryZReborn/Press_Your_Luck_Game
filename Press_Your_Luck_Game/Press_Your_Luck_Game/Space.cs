@@ -70,7 +70,6 @@ namespace Press_Your_Luck_Game
 
         }
 
-
         public KeyValuePair<string, int> EventNVal
         {
             get

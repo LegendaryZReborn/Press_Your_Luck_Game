@@ -62,6 +62,7 @@
             this.PressYourLuckSpin = new System.Windows.Forms.PictureBox();
             this.currentStatusL = new System.Windows.Forms.Label();
             this.playOrQuitButton = new System.Windows.Forms.Button();
+            this.passSpinsButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -243,9 +244,9 @@
             this.stopButton.BackColor = System.Drawing.Color.DarkRed;
             this.stopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stopButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.stopButton.Location = new System.Drawing.Point(824, 365);
+            this.stopButton.Location = new System.Drawing.Point(806, 376);
             this.stopButton.Name = "stopButton";
-            this.stopButton.Size = new System.Drawing.Size(103, 98);
+            this.stopButton.Size = new System.Drawing.Size(82, 72);
             this.stopButton.TabIndex = 19;
             this.stopButton.Text = "Stop Spin";
             this.stopButton.UseVisualStyleBackColor = false;
@@ -359,24 +360,37 @@
             // currentStatusL
             // 
             this.currentStatusL.AutoSize = true;
-            this.currentStatusL.Font = new System.Drawing.Font("HACKED", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentStatusL.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.currentStatusL.Location = new System.Drawing.Point(819, 12);
             this.currentStatusL.Name = "currentStatusL";
-            this.currentStatusL.Size = new System.Drawing.Size(0, 25);
+            this.currentStatusL.Size = new System.Drawing.Size(0, 29);
             this.currentStatusL.TabIndex = 25;
             // 
             // playOrQuitButton
             // 
             this.playOrQuitButton.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.playOrQuitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playOrQuitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.playOrQuitButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.playOrQuitButton.Location = new System.Drawing.Point(933, 365);
+            this.playOrQuitButton.Location = new System.Drawing.Point(970, 376);
             this.playOrQuitButton.Name = "playOrQuitButton";
-            this.playOrQuitButton.Size = new System.Drawing.Size(103, 98);
+            this.playOrQuitButton.Size = new System.Drawing.Size(75, 72);
             this.playOrQuitButton.TabIndex = 26;
             this.playOrQuitButton.Text = "Play";
             this.playOrQuitButton.UseVisualStyleBackColor = false;
             this.playOrQuitButton.Click += new System.EventHandler(this.playOrQuitButton_Click);
+            // 
+            // passSpinsButton
+            // 
+            this.passSpinsButton.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.passSpinsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passSpinsButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.passSpinsButton.Location = new System.Drawing.Point(895, 376);
+            this.passSpinsButton.Name = "passSpinsButton";
+            this.passSpinsButton.Size = new System.Drawing.Size(70, 72);
+            this.passSpinsButton.TabIndex = 27;
+            this.passSpinsButton.Text = "Pass Spins";
+            this.passSpinsButton.UseVisualStyleBackColor = false;
+            this.passSpinsButton.Click += new System.EventHandler(this.passSpinsButton_Click);
             // 
             // PressYourLuckGameForm
             // 
@@ -384,6 +398,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1072, 467);
+            this.Controls.Add(this.passSpinsButton);
             this.Controls.Add(this.playOrQuitButton);
             this.Controls.Add(this.currentStatusL);
             this.Controls.Add(this.PressYourLuckSpin);
@@ -475,6 +490,7 @@
         private System.Windows.Forms.PictureBox PressYourLuckSpin;
         private System.Windows.Forms.Label currentStatusL;
         private System.Windows.Forms.Button playOrQuitButton;
+        private System.Windows.Forms.Button passSpinsButton;
     }
 }
 

@@ -29,7 +29,7 @@ namespace Press_Your_Luck_Game
             this.answer = answer;
         }
 
-        //getter and setter for questio
+        //Purpose: specifies get and get properties for question data
         public String Question
         {
             get
@@ -42,7 +42,7 @@ namespace Press_Your_Luck_Game
             }
         }
 
-        //getter and setter for answer
+        //Purpose: specifies get and get properties for answer data
         public String Answer
         {
             get
