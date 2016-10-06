@@ -32,11 +32,20 @@ namespace Press_Your_Luck_Game
         private bool endRound = false, found = false;
         private const string SPIN_MUSIC = "..\\..\\Music\\naruto_5ths_fight.wav";
         private const string GAME_MUSIC = "..\\..\\Music\\one_punch.wav";
-        private const string WIN_MUSIC = "..\\..\\Music\\Dragon Ball Super OST - Turning the Tables.wav";
+        private const string WIN_MUSIC = "..\\..\\Music\\Dragon Ball" + 
+            " Super OST - Turning the Tables.wav";
         private SoundPlayer spin_sound_player = new SoundPlayer(SPIN_MUSIC);
         private SoundPlayer game_sound_player = new SoundPlayer(GAME_MUSIC);
         private SoundPlayer win_sound_player = new SoundPlayer(WIN_MUSIC);
         private const string BORDER_FILE_NAME = "..\\..\\Images\\Misc\\Border.gif";
+        private bool game_soundRunning = false;
+        private string intructions = "The Press Your Luck Game brought to you"
+       + " by Cavaughn Browne and Anthony Enem. The game is simple. You answer 3"
+       + " questions each (2 players) and gain one spin chance for each correct."
+       + " You use the spins to take turns spinning the wheel and gain fabulous"
+       + " prizes or loose some(or all) by landing on Whammy's(the little man)."
+       + " You can pass your spins to the other player if you dont want to spin."
+       + " Have fun!!";
 
         public PressYourLuckGameForm()
         {
@@ -51,15 +60,17 @@ namespace Press_Your_Luck_Game
             BorderBox.BackColor = Color.Transparent;
             BorderBox.Parent = pictureBox1;
             BorderBox.Location = new Point(0, 0);
-            BorderBox.Image = Image.FromFile(BORDER_FILE_NAME);          
-            
-            //Assigns each picture box excluding the BorderBox and PressYourLuckSpin
-            //to an array. Basically this is the array of picture boxes that will 
-            //become game spaces.
+            BorderBox.Image = Image.FromFile(BORDER_FILE_NAME);
+
+            //Assigns each picture box excluding the BorderBox and 
+            //PressYourLuckSpin to an array. Basically this is the array
+            // of picture boxes that will become game spaces.
             for (int i = 0; i < pictureBoxes.Length; i++)
             {
                 boxnames = boxname + (i + 1);
-                pictureBoxes[i] = this.Controls.Find(boxnames, true).FirstOrDefault() as PictureBox;
+                pictureBoxes[i] = this.Controls
+                    .Find(boxnames, true).FirstOrDefault() as PictureBox;
+
                 pictureBoxes[i].SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureBoxes[i].BorderStyle = BorderStyle.Fixed3D;
             }
@@ -78,6 +89,11 @@ namespace Press_Your_Luck_Game
             passSpinsButton.Enabled = false;
             initTimers();
             game_sound_player.PlayLooping(); //start music
+            game_soundRunning = true;
+
+                //Show instructions on a message box;
+                MessageBox.Show(intructions, "Intructions", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
 
         }
 
@@ -100,17 +116,19 @@ namespace Press_Your_Luck_Game
             updatePlayersSpinInfo();
             playOrQuitButton.Text = "Play";
             BorderBox.Visible = false;
+           
         }
 
 
-        //Purpose: Initializes the two timers required to spin and stop the BorderBox
+        //Purpose: Initializes the two timers required to spin and stop 
+        //the BorderBox
         //Requires: nothing
         //Returns: nothing
         private void initTimers()
         {
             reassignTimer = new System.Windows.Forms.Timer();
             reassignTimer.Tick += new EventHandler(reassignTimer_Tick);
-            reassignTimer.Interval = 500; // in reassignTimer = new System.Windows.Forms.Timer();
+            reassignTimer.Interval = 500; 
 
             easeTimer = new System.Windows.Forms.Timer();
             easeTimer.Tick += new EventHandler(easeTimer_Tick);
@@ -128,7 +146,8 @@ namespace Press_Your_Luck_Game
             borderCounter = (borderCounter + 1) % NUM_SPACES;
         }
 
-        //Purpose: Calls the reassignBorder function every reassignTimer.Interval
+        //Purpose: Calls the reassignBorder function every 
+        //reassignTimer.Interval
         //Requires: object sender, EventArgs e
         //Returns: nothing
         private void reassignTimer_Tick(object sender, EventArgs e)
@@ -192,7 +211,7 @@ namespace Press_Your_Luck_Game
             if (reassignTimer.Interval >= 500)
             {
                 BorderBox.Visible = true;
-                reassignTimer.Interval = 10; // in reassignTimer = new System.Windows.Forms.Timer();
+                reassignTimer.Interval = 10; 
                 reassignTimer.Start();
                 stopButton.Enabled = true;
                 passSpinsButton.Enabled = false;
@@ -359,12 +378,17 @@ namespace Press_Your_Luck_Game
         //Returns: nothing
         private void playAgain()
         {
-            DialogResult dialogResult = MessageBox.Show("Do you want to play again?", "Play Again", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show
+                ("Do you want to play again?", "Play Again", 
+                MessageBoxButtons.YesNo);
+
             if (dialogResult == DialogResult.Yes)
             {
                 initGame();
-                spin_sound_player.Stop();
-                game_sound_player.PlayLooping();
+                if (!game_soundRunning)
+                    game_sound_player.PlayLooping();
+                game_soundRunning = true;
+
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -377,22 +401,21 @@ namespace Press_Your_Luck_Game
         //Returns: nothing
         private void startRound()
         {
-            if (!this.Visible)
-                this.Show();
-
-
+           
             if (roundNum <= MAX_ROUNDS)
             {
                 passSpinsButton.Enabled = true;
                 currentStatusL.Text = "Round " + roundNum;
                 
                 //start general game music
-                game_sound_player.PlayLooping();
+                if(!game_soundRunning)
+                     game_sound_player.PlayLooping();
 
                 questionPlayers();
 
                 //start spin music
                 spin_sound_player.PlayLooping();
+                game_soundRunning = false;
 
                 //randomize each space
                 for (int r = 0; r < boardSpaces.Length; r++)
@@ -430,9 +453,12 @@ namespace Press_Your_Luck_Game
             { 
                 if (player1.Cash != player2.Cash)
                 {
-                    currentStatusL.Text = player1.Cash > player2.Cash ? player1.Name : player2.Name;
+                    currentStatusL.Text = player1.Cash > player2.Cash ? 
+                        player1.Name : player2.Name;
+
                     currentStatusL.Text += " Wins";
                     win_sound_player.PlayLooping();
+                    game_soundRunning = false;
                 }
                 else
                 {
