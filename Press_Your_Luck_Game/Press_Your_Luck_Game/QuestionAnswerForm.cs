@@ -18,11 +18,16 @@ namespace Press_Your_Luck_Game
         private const int MAX_QUESTIONS = 100;
         private int num_questions; //number of questions read from the input file
         private string fileDir = "..\\..\\luckfile.txt";
-        private static QAStructure[] qaStructure = new QAStructure[MAX_QUESTIONS];
-        private static int questionCount = 0; //number of questions answered since last startQuestioning call
-        private static int questionIndex = 0; //used to index into question and answers array
-        private int correctAnswers = 0; //number of correct answers since startQuestioning was called
-        private const int MAX_QUESTIONS_ASK = 3; //maximum questions to ask player at a time
+        private static QAStructure[] qaStructure
+             = new QAStructure[MAX_QUESTIONS];
+        //number of questions answered since last startQuestioning call
+        private static int questionCount = 0;
+        //used to index into question and answers array
+        private static int questionIndex = 0;
+        //number of correct answers since startQuestioning was called 
+        private int correctAnswers = 0;
+        //maximum questions to ask player at a time
+        private const int MAX_QUESTIONS_ASK = 3; 
 
         public QuestionAnswerForm(/*PressYourLuckGameForm game_form*/)
         {
